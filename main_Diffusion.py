@@ -16,7 +16,7 @@ from loss import *
 from dataset import *
 import datetime
 from model import  *
-from mainszy import *
+from main import *
 def add_noise_to_model(model, noise_ratio=0.20):
     """
                
@@ -33,13 +33,13 @@ def add_noise_to_model(model, noise_ratio=0.20):
     return model
 def main():
     chiname = "yuanbit/max-15-1e-6-1500"
-    chiname ="/data/1/fintune_sd/stable_diffusion_finetuned/szy1/merged_sd_model10000/"
-    chiname ="/data/1/fintune_sd/stable_diffusion_finetuned/szybooth1/"
+    chiname ="/data/1/fintune_sd/stable_diffusion_finetuned/1/merged_sd_model10000/"
+    chiname ="/data/1/fintune_sd/stable_diffusion_finetuned/booth1/"
     chiname = "KwongYung/trained-sd2"
     chiname= "stabilityai/stable-diffusion-2"
-    chiname= "/data/1/fintune_sd/stable_diffusion_finetuned/szybooth2"
+    chiname= "/data/1/fintune_sd/stable_diffusion_finetuned/booth2"
     # dataset = Diff_Dataset(pos_chiname=chiname,neg_name="bguisard/stable-diffusion-nano-2-1")
-    dataset = Diff_Dataset(pos_chiname="/data/1/fintune_sd/stable_diffusion_finetuned/szybooth1/",neg_name="/data/1/fintune_sd/stable_diffusion_finetuned/szybooth-chi1/",neg_chiname="/data/1/fintune_sd/stable_diffusion_finetuned/szybooth-chi3/")
+    dataset = Diff_Dataset(pos_chiname="/data/1/fintune_sd/stable_diffusion_finetuned/booth1/",neg_name="/data/1/fintune_sd/stable_diffusion_finetuned/booth-chi1/",neg_chiname="/data/1/fintune_sd/stable_diffusion_finetuned/booth-chi3/")
     dataloader = DataLoader(dataset, batch_size=5, shuffle=True)
     size = len(dataset)
     pos_fa_l = []
