@@ -147,10 +147,8 @@ def main():
             # fb_afea,fcfea,fpfea=falsedata[2].to('cuda:0'),falsedata[0].to('cuda:0'),falsedata[1].to('cuda:0')
             fencb_afea, fenccfea=encnet(fb_afea), encnet(fcfea)
             fsumknow=prenet(fencb_afea,fenccfea)
-            # 交叉计算三元组损失
-            loss1 = triplet_loss_fn(pknow, sumknow, fsumknow)  # 标准三元组
-            loss3 = triplet_loss_fn(sumknow, pknow, fsumknow)  # 交换 anchor
-            # 计算最终损失（可以使用加权平均）
+            loss1 = triplet_loss_fn(pknow, sumknow, fsumknow) 
+            loss3 = triplet_loss_fn(sumknow, pknow, fsumknow) 
             loss = loss1 + loss3
             # Backpropagation and optimization
             optimizer.zero_grad()
