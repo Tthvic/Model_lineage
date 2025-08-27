@@ -8,18 +8,6 @@ from Small_model.test_R_final.dataloader810 import create_dataloader,EmbeddingDa
 from Small_model.test_R_final.loss import *
 from torch.utils.data import TensorDataset, DataLoader
 
-pathdict={
-    'Calt_sun':'SUN_CIFAR_Calt_adv_fea',
-    'Dogs_sun':'SUN_CIFAR_Dogs_adv_fea',
-    'Flowers_sun': 'SUN_CIFAR_Flowers_adv_fea',
-    'Calt_chongsun': 'CSUN_Aircraft_CIFAR_Calt_adv_fea',
-    'Dogs_chongsun': 'CSUN_Pet_CIFAR_Dogs_adv_fea',
-    'Flowers_chongsun': 'CSUN_Calt_CIFAR_Flowers_adv_fea',
-    'Calt_parent_child':'Calt_adv_fea',
-    'Dogs_parent_child':'Dogs_adv_fea',
-    'Flowers_parent_child':'Flowers_adv_fea'
-}
-
 class TripletLoss(nn.Module):
     def __init__(self, margin=0.2):
         super(TripletLoss, self).__init__()
