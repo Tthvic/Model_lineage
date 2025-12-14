@@ -8,13 +8,12 @@ This repository contains the official implementation for the paper **"Attesting 
 - [Quick Start (Reviewer Mode)](#-quick-start-reviewer-mode)
 - [Full Reproduction Pipeline](#-full-reproduction-pipeline)
   - [Project Structure](#-project-structure)
-  - [Small Models (Vision)](#1-small-models-mobilenet--resnet)
+  - [Small Models](#1-small-models-mobilenet--resnet)
   - [Large Language Models](#2-large-language-models-llm)
   - [Diffusion Models](#3-diffusion-models)
 - [Configuration](#-configuration)
 - [Adaptive Attacks](#️-adaptive-attacks-evaluation)
 - [Baseline Comparisons](#-baseline-comparisons)
-- [Experimental Results](#-experimental-results)
 - [Citation](#-citation)
 
 ---
