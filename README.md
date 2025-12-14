@@ -27,16 +27,6 @@ The fine-tuning technique in deep learning gives rise to an emerging lineage rel
   <img src="Method.png" alt="Methodology Overview" width="90%" />
 </div>
 
-## ✨ Key Features
-
-- 🎯 **Universal Framework**: Works across vision classifiers (MobileNet, ResNet), diffusion models (Stable Diffusion), and LLMs (Qwen, Llama, Mistral, Gemma, Phi)
-- 🧠 **Knowledge Vectorization**: Novel mechanism to extract and represent model knowledge as compact embeddings
-- 🔍 **Lineage Detection**: Transformer-based detector that verifies parent-child relationships through knowledge evolution consistency
-- 🛡️ **Adversarial Robustness**: Resistant to knowledge overwriting, weight perturbation, model pruning, and structure evasion attacks
-- 📊 **Comprehensive Evaluation**: Extensive experiments on multiple benchmarks (GSM8K, MMLU, HellaSwag, HumanEval, COCO, Caltech-101)
-- 🔧 **Easy Configuration**: YAML-based configuration for all experiments with pre-configured setups for popular model families
-- 📦 **Complete Pipeline**: End-to-end scripts from model training to lineage detection and attack evaluation
-
 ## 🧩 Methodology
 
 Our approach attests model lineage by verifying the consistency between the **Fine-Tuning Trajectory** and the **Knowledge Evolution Path**.
