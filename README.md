@@ -476,19 +476,6 @@ bash run_experiment.sh
    cat results/attack_report.txt
    ```
 
-### Adaptive Attack Results Summary
-
-| Attack Type | Model Type | Attack Strength | Detection Rate | Notes |
-|-------------|------------|-----------------|----------------|-------|
-| Knowledge Overwriting | LLM | Low (10%) | > 0.4 sim | Robust detection |
-| Knowledge Overwriting | LLM | Medium (30%) | > 0.4 sim | Robust detection |
-| Knowledge Overwriting | LLM | High (50%) | > 0.4 sim | Robust detection |
-| Knowledge Infusion | LLM | Selective | > 80% acc | Domain-specific |
-| Weight Pruning | LLM | 50% pruning | > 75% acc | Compression robust |
-| Knowledge Overwriting | Vision | 100% shuffle | > 0.6 sim | Label randomization |
-| Weight Perturbation | Vision | Low noise | > 85% acc | Minimal impact |
-| Weight Perturbation | Vision | High noise | > 75% acc | Robust to noise |
-
 ### Detailed Documentation
 
 Each attack has its own detailed README with:
