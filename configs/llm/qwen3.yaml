@@ -1,0 +1,97 @@
+# LLM Knowledge Relation Learning Configuration - Qwen 3 (Template)
+
+project:
+  name: "Qwen3"
+  family: "qwen"
+
+# Data Configuration
+data:
+  root_dir: "./data" 
+  
+  dataset_dir: "intermediate/llm/datasets/Qwen3"
+  raw_datasets_dir: "datasets"
+
+  # Base model paths
+  # Note: Replace with actual paths once models are downloaded
+  base_model_path: "models/llm/Qwen3/base_models/Qwen--Qwen3-Base" 
+  instruct_model_path: "models/llm/Qwen3/base_models/Qwen--Qwen3-Instruct"
+
+  finetune_models_dir: "models/llm/Qwen3/Finetunes"
+  merge_models_dir: "models/llm/Qwen3/Merges"
+  adapter_models_dir: "models/llm/Qwen3/Adapters"
+
+  embedding_dir: "embeddings/llm/Qwen3"
+  result_dir: "intermediate/llm/Qwen3/results"
+  
+  instruct_dir: "Qwen_Instruct"
+  finetune_dir: "Finetune"
+  ba_dir: "B-A"
+  random_dir: "Qwen_random"
+  
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+    
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 1536  # Adjust based on actual Qwen3 hidden size (e.g. 1.5B might be 1536, 7B might be 4096)
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download
+models_to_download:
+  base_models:
+    # Add Qwen3 base models
+    - "Qwen/Qwen3-8B"
+    - "Qwen/Qwen3-VL-8B-Instruct"
+  adapters:
+    # Add Qwen3 adapters here
+    - "Nightfury16/qwen3vl-eedi-lora"
+    - "enpeizhao/qwen3-8b-instruct-trl-sft-20-bf16-merged"
+    - "EditScore/EditScore-Qwen3-VL-8B-Instruct"
+    - "Balfiky/odbcls-8b-instruct"
+    - "olegGerbylev/qwen3-vl-sop"
+    - "RevHard69MFJ/TRAILLOFPOSSIBILITIES"
+    - "yoavf/prompt-cute-pet"
+    - "chancharikm/dpo_all_20251113_ep5_lr5e6_qwen3-vl-8b"
+    - "chancharikm/dpo_caption_generation_20251113_ep5_lr5e6_qwen3-vl-8b"
+    - "sonali3/VERSION2qwen3vl-cxr"
+
+  finetunes:
+    # Add Qwen3 finetunes here
+    - "TomoroAI/tomoro-colqwen3-embed-8b"
+    - "OneThink/OneThinker-8B"
+    - "sensenova/SenseNova-SI-1.1-Qwen3-VL-8B"
+    - "thesby/Qwen3-VL-8B-NSFW-Caption-V4.5"
+    - "prithivMLmods/Qwen3-VL-8B-Instruct-abliterated-v2"
+    - "prithivMLmods/proxima-ocr-d.markdown-post3.0.l"
+    - "thesby/Qwen3-VL-8B-NSFW-Caption-V4"
+    - "prithivMLmods/Qwen3-VL-8B-Abliterated-Caption-it"
+    - "raisingapore/Qwen-SEA-LION-v4-8B-VL"
+    - "OneThink/OneThinker-SFT-Qwen3-8B"
+
+  merges:
+    # Add Qwen3 merges here

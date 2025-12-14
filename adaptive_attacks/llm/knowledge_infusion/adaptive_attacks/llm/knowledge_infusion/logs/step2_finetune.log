@@ -1,0 +1,11 @@
+2025-12-13 13:48:01,256 - ERROR - Data file not found: adaptive_attacks/llm/knowledge_infusion/data/qa_1_5.jsonl
+2025-12-13 13:48:01,256 - ERROR - Please run step1_split_data.py first
+2025-12-13 13:48:01,256 - ERROR - Data file not found: adaptive_attacks/llm/knowledge_infusion/data/qa_6_15.jsonl
+2025-12-13 13:48:01,256 - ERROR - Please run step1_split_data.py first
+2025-12-13 13:48:01,257 - ERROR - Data file not found: adaptive_attacks/llm/knowledge_infusion/data/qa_11_30.jsonl
+2025-12-13 13:48:01,257 - ERROR - Please run step1_split_data.py first
+2025-12-13 13:48:01,257 - INFO - 
+============================================================
+2025-12-13 13:48:01,257 - INFO - All models finetuned successfully!
+2025-12-13 13:48:01,257 - INFO - ============================================================
+2025-12-13 13:48:01,257 - INFO - Summary saved to: adaptive_attacks/llm/knowledge_infusion/results/finetune_summary.json

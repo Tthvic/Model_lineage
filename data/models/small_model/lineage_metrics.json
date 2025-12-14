@@ -1,0 +1,13 @@
+{
+    "accuracy": 0.85,
+    "confusion_matrix": {
+        "tn": 20,
+        "fp": 1,
+        "fn": 5,
+        "tp": 14
+    },
+    "auc": 0.8471177944862155,
+    "tpr_at_5_percent_fpr": 0.7368421052631579,
+    "tpr_at_1_percent_fpr": 0.42105263157894735,
+    "tpr_at_01_percent_fpr": 0.42105263157894735
+}

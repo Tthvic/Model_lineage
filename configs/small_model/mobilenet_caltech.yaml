@@ -1,0 +1,62 @@
+project:
+  name: "small_model_lineage"
+  type: "vision"
+
+dataset:
+  name: "caltech101"
+  root: "/data/shangzhuoyi/Dataset/Pet/Caltech101"
+  num_classes: 101
+  image_size: 224
+  batch_size: 64
+  num_workers: 4
+
+models:
+  parent:
+    name: "mobilenet_v2"
+    pretrained: true
+    classes: [40, 7, 1, 47, 17, 15] # Example subset from original code
+    num_epochs: 10
+    learning_rate: 0.001
+    save_path: "data/models/small_model/parent/mobilenet_v2_caltech101.pth"
+  
+  child:
+    name: "mobilenet_v2"
+    pretrained: true 
+    finetune_from: "parent" 
+    classes: [93, 62, 88, 73] # Example subset from original code
+    num_epochs: 5
+    learning_rate: 0.0001
+    save_path: "data/models/small_model/child/mobilenet_v2_caltech101_finetuned.pth"
+
+  independent:
+    name: "mobilenet_v2"
+    pretrained: true
+    finetune_from: "imagenet"
+    classes: [93, 62, 88, 73] # Same classes as child, but independent training
+    num_epochs: 5
+    learning_rate: 0.001
+    save_path: "data/models/small_model/independent/mobilenet_v2_caltech101.pth"
+
+generation:
+  output_dir: "data/intermediate/small_model/samples"
+  adversarial:
+    enabled: true
+    epsilon: 0.03
+    alpha: 0.01
+    iters: 10
+    count: 1000
+  center:
+    enabled: true
+    count: 1000
+
+embeddings:
+  output_dir: "data/embeddings/small_model"
+  batch_size: 128
+
+lineage_training:
+  input_dim: 1280 # MobileNetV2 feature dim
+  hidden_dim: 512
+  output_dim: 2 # Binary classification (Related/Unrelated)
+  num_epochs: 20
+  learning_rate: 0.001
+  save_path: "data/models/small_model/lineage_detector.pth"

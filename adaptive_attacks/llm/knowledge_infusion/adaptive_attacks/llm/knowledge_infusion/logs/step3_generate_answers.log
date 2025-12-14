@@ -1,0 +1,2 @@
+2025-12-13 13:48:06,550 - ERROR - QA文件不存在: adaptive_attacks/llm/knowledge_infusion/data/qa_full_30.jsonl
+2025-12-13 13:48:06,550 - ERROR - 请先运行 step1_split_data.py

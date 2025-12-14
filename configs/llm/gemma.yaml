@@ -1,0 +1,103 @@
+# LLM Knowledge Relation Learning Configuration - Gemma 2B
+
+project:
+  name: "Gemma-2B"
+  family: "gemma"
+
+# Data Configuration
+data:
+  root_dir: "./data" 
+  
+  dataset_dir: "intermediate/llm/datasets/Gemma-2B"
+  raw_datasets_dir: "datasets"
+
+  # Base model paths
+  base_model_path: "models/llm/Gemma-2B/base_models/google--gemma-2b"
+  instruct_model_path: "models/llm/Gemma-2B/base_models/google--gemma-2b-it"
+
+  finetune_models_dir: "models/llm/Gemma-2B/Finetunes"
+  merge_models_dir: "models/llm/Gemma-2B/Merges"
+  adapter_models_dir: "models/llm/Gemma-2B/Adapters"
+
+  embedding_dir: "embeddings/llm/Gemma-2B"
+  result_dir: "intermediate/llm/Gemma-2B/results"
+  
+  instruct_dir: "Gemma_Instruct"
+  finetune_dir: "Finetune"
+  ba_dir: "B-A"
+  random_dir: "Gemma_random"
+  
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+  
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 2048  # Gemma 2B hidden size
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download
+models_to_download:
+  base_models:
+    - "google/gemma-2b"
+    - "google/gemma-2b-it"
+  
+  adapters:
+    # Add Gemma adapters here
+    - "arunvpp05/Nexura-Gemma2B"
+    - "codewizardUV/google-gemma-2b"
+    - "windmaple/gemma-chinese"
+    - "glenn2/gemma-7b-lora-distilabel-intel-orca-dpo-pairs"
+    - "glenn2/outputs"
+    - "mixtralyanis/outputs"
+    - "alonzogarbanzo/Gemma-2b-dialogsum-finetuned-initial"
+    - "mixtralyanis/outputs"
+    - "sanchit-gandhi/gemma-2b-openassistant-guanaco"
+    - "shashank-deshpande/outputs"
+
+  finetunes:
+    # Add Gemma finetunes here
+    - "daytoy-models/test"
+    - "Tensoic/Gemma-2B-Samvaad"
+    - "pansophic/gemma-2b-sft-preview"
+    - "LoneStriker/Gemmalpaca-2B-6.0bpw-h6-exl2"
+    - "wandb/gemma-2b-zephyr-sft"
+    - "Telugu-LLM-Labs/Telugu-gemma-2b-finetuned-sft"
+    - "Menouar/pygemma"
+    - "NexaAI/Octopus-v2"
+    - "santhoshmlops/gemma-2b-unsloth-SFT"
+    - "Menouar/pygemma-2b-ultra"
+
+  merges:
+    # Add Gemma merges here
+    - "EdBerg/GreatRag-13B-slerp"
+    - "lemon-mint/gemma-2b-diff-model"
+    - "lemon-mint/gemma-ko-1.1-2b-it"
+    - "lemon-mint/gemma-ko-1.1-2b-it-2"
+    - "ScienceArtMagic/TallGemma-Raw"
+    - "andreass123/gemma-ko-1.1-2b-it-2-Q4_K_M-GGUF"
+    - "Recaru/gemma-ko-1.1-2b-it-Q5_K_M-GGUF"

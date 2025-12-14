@@ -1,0 +1,96 @@
+# LLM Knowledge Relation Learning Configuration - Phi-4 (Template)
+
+project:
+  name: "Phi-4"
+  family: "phi"
+
+# Data Configuration
+data:
+  root_dir: "./data" 
+  
+  dataset_dir: "intermediate/llm/datasets/Phi-4"
+  raw_datasets_dir: "datasets"
+
+  # Base model paths
+  base_model_path: "models/llm/Phi-4/base_models/microsoft--phi-4"
+  instruct_model_path: "models/llm/Phi-4/base_models/microsoft--phi-4" # Phi-4 is often instruct tuned by default
+
+  finetune_models_dir: "models/llm/Phi-4/Finetunes"
+  merge_models_dir: "models/llm/Phi-4/Merges"
+  adapter_models_dir: "models/llm/Phi-4/Adapters"
+
+  embedding_dir: "embeddings/llm/Phi-4"
+  result_dir: "intermediate/llm/Phi-4/results"
+  
+  instruct_dir: "Phi_Instruct"
+  finetune_dir: "Finetune"
+  ba_dir: "B-A"
+  random_dir: "Phi_random"
+  
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+  
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 2560  # Phi-4 hidden size (check actual value)
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download
+models_to_download:
+  base_models:
+    - "microsoft/phi-4"
+    - "microsoft/Phi-4-mini-instruct"
+  adapters:
+    # Add Phi-4 adapters here
+    - "lfhe/FLock-Arena-Task-17-JustParse"
+    - "random-sequence/task-3-microsoft-Phi-4-mini-instruct"
+    - "testliai-main/testli-ai-gen-exam-Phi-4-mini-instruct-v1.0.0"
+    - "ethicalabs/Flwr-Phi-4-mini-Instruct-Coding-PEFT"
+    - "Swephoenix/phi4-lora-xaji0y6d-1742299723"
+    - "Swephoenix/phi4-lora-xaji0y6d-1742306687"
+    - "MentaCapture/p4a-last"
+    - "elliotthwangmsa/Phi-4-mini-instruct_train_outputs3"
+    - "elliotthwang/Phi-4-mini-instruct_train_outputs"
+    - "pepe213/kahilwa-fit"
+
+  finetunes:
+    # Add Phi-4 finetunes here
+    - "unsloth/Phi-4-mini-instruct"
+    - "SaisExperiments/Phi-4-Mini-OwOified"
+    - "mfvitale/debezium-faq-model"
+    - "DanielSwift/Phi-4-mini-instruct-emergence"
+    - "lunahr/Phi-4-mini-instruct-abliterated"
+    - "huihui-ai/Phi-4-mini-instruct-abliterated"
+    - "Sombreros/SombI1.0"
+    - "tpircsc/phi-4-mini-it-thinking-function_calling-V0"
+    - "Jarrodbarnes/Cortex-1-mini"
+    - "Donatas100/merged_Qwen_Phi4-mini"
+
+  merges:
+    # Add Phi-4 merges here
+    - "Pinkstack/Phi-4-mini-6b-merge"

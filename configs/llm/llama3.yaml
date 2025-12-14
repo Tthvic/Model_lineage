@@ -1,0 +1,113 @@
+# LLM Knowledge Relation Learning Configuration - Llama 3 8B
+
+project:
+  name: "Llama-3-8B"
+  family: "llama"
+
+# Data Configuration
+data:
+  # Root directory for data.
+  root_dir: "./data" 
+  
+  # Directory containing source datasets (jsonl files generated from answers)
+  dataset_dir: "intermediate/llm/datasets/Llama-3-8B"
+  
+  # Directory containing raw downloaded datasets (gsm8k, mmlu, etc.)
+  raw_datasets_dir: "datasets"
+
+  # Base model paths (Relative to root_dir)
+  base_model_path: "models/llm/Llama-3-8B/base_models/meta-llama--Meta-Llama-3-8B"
+  instruct_model_path: "models/llm/Llama-3-8B/base_models/meta-llama--Meta-Llama-3-8B-Instruct"
+
+  # Directories for raw downloaded models (Relative to root_dir)
+  # These are used to search for models to process
+  finetune_models_dir: "models/llm/Llama-3-8B/Finetunes"
+  merge_models_dir: "models/llm/Llama-3-8B/Merges"
+  adapter_models_dir: "models/llm/Llama-3-8B/Adapters"
+
+  # Directory containing generated embeddings
+  embedding_dir: "embeddings/llm/Llama-3-8B"
+  
+  # Directory to save results
+  result_dir: "intermediate/llm/Llama-3-8B/results"
+  
+  # Subdirectories names (Used for both dataset_dir and embedding_dir)
+  instruct_dir: "Llama_Instruct"     # Parent model (Instruct)
+  finetune_dir: "Finetune"           # Child model (Finetuned)
+  ba_dir: "B-A"                      # B-A difference root
+  random_dir: "Llama_random"         # Negative samples (Random)
+  
+  # List of tasks to include
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+  
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 4096  # Llama 3 8B hidden size
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download
+models_to_download:
+  base_models:
+    - "meta-llama/Meta-Llama-3-8B-Instruct"
+    - "meta-llama/Meta-Llama-3-8B"
+    - "TwinLlama-3.1-8B"
+    - "nvidia/OpenMath2-Llama3.1-8B"
+    - "meta-llama/Llama-Guard-3-8B"
+    - "Dolphin3.0-Llama3.1-8B"
+    - "Llama-3.1-Tulu-3-8B-SFT"
+
+  adapters:
+    # Add Llama 3 adapters here
+    - "Rakancorle1/ThinkGuard"
+    - "jodel/finetune-guard-3"
+    - "VincentGOURBIN/Llama-Guard-3-8B"
+    - "Rakancorle1/dpsk_15k_GenExplan_4epochs_2e5_wrr003"
+    - "Rakancorle1/amz_safe"
+    - "EleanorZzz/persuasion_simulation_tulu3_sft_w_promp_5epochs"
+    - "allenai/Llama-3.1-Tulu-3-8B-RM"
+    - "lucyknada/allenai_Llama-3.1-Tulu-3-8B-DPO-exl2"
+  finetunes:
+    # Add Llama 3 finetunes here
+    - "luojunyu/Llama-3.1-8B-SemiEvol-MMLU"
+    - "TsinghuaC3I/Llama-3.1-8B-UltraMedical"
+    - "Skywork/Skywork-Critic-Llama-3.1-8B"
+    - "prithivMLmods/Llama-3.1-8B-Open-SFT"
+    - "bunnycore/Llama-3.1-8B-TitanFusion-Test"
+    - "TwinLlama-3.1-8B-DPO"
+    - "Dolphin3.0-Llama3.1-8B-abliterated"
+    - "NotDolphin3.0-Llama3.1-8ContinuedFine"
+    - "Dolphin3.0-Llama3.1-8B-bf16"
+    - "Kwoya/Mini-Spyra-v.2.1"
+  merges:
+    # Add Llama 3 merges here
+    - "sethuiyer/Llamaverse-3.1-8B-Instruct"
+    - "3rd-Degree-Burn/Llama-3.1-8B-Squareroot-v0"
+    - "Llama-3.1-8B-TitanFusion-Test"
+    - "Llama-3.1-Tulu-3-8B-DPO"
+    - "EleanorZzz/persuasion_simulation_tulu3_sft_w_promp_3epochs"

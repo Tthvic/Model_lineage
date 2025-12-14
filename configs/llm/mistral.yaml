@@ -1,0 +1,106 @@
+# LLM Knowledge Relation Learning Configuration - Mistral 7B
+
+project:
+  name: "Mistral-7B"
+  family: "mistral"
+
+# Data Configuration
+data:
+  root_dir: "./data" 
+  
+  dataset_dir: "intermediate/llm/datasets/Mistral-7B"
+  raw_datasets_dir: "datasets"
+
+  # Base model paths
+  base_model_path: "models/llm/Mistral-7B/base_models/mistralai--Mistral-7B-v0.1"
+  instruct_model_path: "models/llm/Mistral-7B/base_models/mistralai--Mistral-7B-Instruct-v0.1"
+
+  finetune_models_dir: "models/llm/Mistral-7B/Finetunes"
+  merge_models_dir: "models/llm/Mistral-7B/Merges"
+  adapter_models_dir: "models/llm/Mistral-7B/Adapters"
+
+  embedding_dir: "embeddings/llm/Mistral-7B"
+  result_dir: "intermediate/llm/Mistral-7B/results"
+  
+  instruct_dir: "Mistral_Instruct"
+  finetune_dir: "Finetune"
+  ba_dir: "B-A"
+  random_dir: "Mistral_random"
+  
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+  
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 4096  # Mistral 7B hidden size
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 16
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download
+models_to_download:
+  base_models:
+    - "mistralai/Mistral-7B-v0.1"
+    - "mistralai/Mistral-7B-Instruct-v0.1"
+  
+  adapters:
+    # Add Mistral adapters here
+    - "derhuli/ragu-7b-mistral"
+    - "kanxxyc/Mistral-7B-SQLTuned"
+    - "surajp/Mistral-7B-Instruct-v01-qlora-numerai-1epoch"
+    - "philka-ua/mistral-instruct-finetuned-iee_v0-4bit"
+    - "sarangsonar/mistral_instruct_cypher"
+    - "gorkemgoknar/mistral-7b-instruct-turkce-lora"
+    - "Laurent1/Mistral-7B-Instruct-v0.1-QLoRa-medical-QA"
+    - "Prompt48/Mistral-7B-Instruct-v0.1-fine-tuned-adapters-V1"
+    - "pankajemplay/mistral_7b-instruct-intent-1615"
+    - "Josh-Ola/AFEX-mistral-finetuned"
+
+  finetunes:
+    # Add Mistral finetunes here
+    - "vineetsharma/qlora-Mistral-7B-Instruct-v0.1-databricks-dolly-15k"
+    - "vineetsharma/qlora-adapter-Mistral-7B-Instruct-v0.1-gsm8k"
+    - "TrevorJS/mtg-mistral-7b-instruct-lora"
+    - "MagicLEMP/loravocat_7B_mistral_mixed_summary_law_question_V4"
+    - "jlpan/Mistral_ET_1"
+    - "erbacher/Mistral7B-inst-clar"
+    - "Mel-Iza0/Mistral-base-instruct"
+    - "Weni/WeniGPT-Mistral-7B-instructBase"
+    - "hobbesleland/mistral-viggo-finetune"
+    - "sshh12/Mistral-7B-LoRA-ImageBind-LLAVA"
+
+  merges:
+    # Add Mistral merges here
+    - "osanseviero/mistral-instruct-frankenmerge"
+    - "osanseviero/mistral-instruct-slerp"
+    - "osanseviero/mistral-instruct-moe-experimental"
+    - "BioMistral/BioMistral-7B-SLERP"
+    - "LoneStriker/BioMistral-7B-DARE-3.0bpw-h6-exl2"
+    - "BioMistral/BioMistral-7B-DARE-GGUF"
+    - "Kquant03/BioMistral-7B-TIES-GGUF"
+    - "abhishek-ch/biomistral-7b-synthetic-ehr"
+    - "jpquiroga/Mistral_7B_ties_merge_instruct_open_orca"
+    - "Narkantak/Mistral-2x7b-Instruct-1x2"

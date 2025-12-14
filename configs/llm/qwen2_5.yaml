@@ -1,0 +1,130 @@
+# LLM Knowledge Relation Learning Configuration - Qwen 2.5 1.5B
+
+project:
+  name: "Qwen2.5-1.5B"
+  family: "qwen"
+
+# Data Configuration
+data:
+  # Root directory for data.
+  root_dir: "./data" 
+  
+  # Directory containing source datasets (jsonl files generated from answers)
+  dataset_dir: "intermediate/llm/datasets/Qwen2.5-1.5B"
+  
+  # Directory containing raw downloaded datasets (gsm8k, mmlu, etc.)
+  raw_datasets_dir: "datasets"
+
+  # Base model paths (Relative to root_dir)
+  base_model_path: "models/llm/Qwen2.5-1.5B/base_models/Qwen--Qwen2.5-1.5B"
+  instruct_model_path: "models/llm/Qwen2.5-1.5B/base_models/Qwen--Qwen2.5-1.5B-Instruct"
+
+  # Directories for raw downloaded models (Relative to root_dir)
+  # These are used to search for models to process
+  finetune_models_dir: "models/llm/Qwen2.5-1.5B/Finetunes"
+  merge_models_dir: "models/llm/Qwen2.5-1.5B/Merges"
+  adapter_models_dir: "models/llm/Qwen2.5-1.5B/Adapters"
+
+  # Directory containing generated embeddings
+  embedding_dir: "embeddings/llm/Qwen2.5-1.5B"
+  
+  # Directory to save results
+  result_dir: "intermediate/llm/Qwen2.5-1.5B/results"
+  
+  # Subdirectories names (Used for both dataset_dir and embedding_dir)
+  instruct_dir: "Qwen_Instruct"      # Parent model (Instruct)
+  finetune_dir: "Finetune"           # Child model (Finetuned)
+  ba_dir: "B-A"                      # B-A difference root
+  random_dir: "Qwen_random"          # Negative samples (Random)
+  
+  # List of tasks to include
+  tasks: 
+    - "gsm8k"
+    - "mmlu"
+    - "arc_challenge"
+    - "hellaswag"
+    - "humaneval"
+    - "mgsm"
+  
+  test_ratio: 0.2
+
+# Model Architecture Configuration
+model:
+  encoder:
+    feat_dim: 1536  # Qwen2.5-1.5B hidden size
+    d_model: 512
+    kernel_size: 3
+    dropout: 0.1
+  
+  relation_net:
+    embedding_dim: 512
+    
+  triplet_loss:
+    margin: 0.5
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.0001
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 5
+
+# Models to Download (Moved from script to config)
+models_to_download:
+  base_models:
+    - "Qwen/Qwen2.5-1.5B-Instruct"
+    - "Qwen/Qwen2.5-1.5B"
+    - "Qwen/Qwen2.5-Math-1.5B"
+
+  adapters:
+    - "r1char9/Oblivion2.5-1.5B-Instruct-v1"
+    - "DreamGallery/Qwen-Qwen2.5-1.5B-Instruct-1727452927"
+    - "silent666/Qwen-Qwen2.5-1.5B-Instruct-1727478552"
+    - "shibing624/chinese-text-correction-1.5b-lora"
+    - "johnnyllm/task-14-Qwen-Qwen2.5-1.5B-Instruct"
+    - "bharati2324/Qwen2.5-1.5B-Instruct-Code-LoRA-r16v3"
+    - "nekokiku/task-15-Qwen-Qwen2.5-1.5B-Instruct"
+    - "Superrrdamn/task-16-Qwen-Qwen2.5-1.5B-Instruct"
+    - "dir00/task-15-Qwen-Qwen2.5-1.5B-Instruct"
+    - "Arthur-77/QWEN2.5-1.5B-medical-finetuned"
+    - "Hazde/careerbot_PG6_Qwen_Qwen2.5-1.5B-Instruct_model_LoRA_5"
+    - "nekokiku/task-17-Qwen-Qwen2.5-1.5B-Instruct"
+    - "1-lock/58c91d56-17f7-4477-9f3c-7ce9511f7d3c"
+    - "eeeebbb2/9edc3b53-18bc-472a-926b-a9b457403b4f"
+    - "DeepDream2045/ca982efa-b911-43d7-8ec0-0b76f01c778c"
+
+  finetunes:
+    - "nvidia/OpenReasoning-Nemotron-1.5B"
+    - "jaeyong2/Qwen2.5-1.5B-Instruct-Thai-SFT"
+    - "katanemo/Arch-Router-1.5B"
+    - "shibing624/chinese-text-correction-1.5b"
+    - "Vikhrmodels/Vikhr-Qwen-2.5-1.5B-Instruct"
+    - "jaeyong2/Qwen2.5-1.5B-Instruct-Viet-SFT"
+    - "xavierwoon/cesterqwen"
+    - "CMLL/ZhongJing-3-1_5b_V2"
+    - "osllmai-community/Qwen2.5-1.5B-Instruct"
+    - "cycloarcane/QWARG-test"
+    - "XueyingJia/qwen2.5-1.5b-oaif"
+    - "blakenp/Qwen2.5-1.5B-Policy2"
+    - "SakanaAI/TinySwallow-1.5B-Instruct"
+    - "Sakalti/Test-1003"
+    - "winstcha/context-1.5B"
+    
+  merges:
+    - "bunnycore/Qwen2.5-1.5B-Matrix"
+    - "Hjgugugjhuhjggg/mergekit-model_stock-xtxndeh"
+    - "Hjgugugjhuhjggg/mergekit-ties-kxlqekl"
+    - "Sakalti/Crystal_1.8b"
+    - "Xiaojian9992024/Singularity-Qwen2.5-1.5B"
+    - "DavidAU/Qwen2.5-MOE-6x1.5B-DeepSeek-Reasoning-e32"
+    - "Kukedlc/NeuralQwen-2.5-1.5B-Spanish"
+    - "Marsouuu/MiniQwenMathExpert-ECE-PRYMMAL-Martial"
+    - "LilRg/ECE-1B-merge-PRYMMAL"
+    - "tuanpasg/puffin-linear-coder-ties-2"
+    - "mergekit-community/SuperQwen-2.5-1.5B"
+    - "mergekit-community/Qwen3-1.5B-Instruct"
+    - "bunnycore/AceQwen2.5-1.5B-Sce"
+    - "prithivMLmods/Qwen2.5-1.5B-DeepSeek-R1-Instruct"
+    - "kunal732/qwenreader3"
