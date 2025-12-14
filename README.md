@@ -527,25 +527,3 @@ If you find this repository useful for your research, please cite our paper:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
-
-We welcome contributions! Please feel free to:
-- Report bugs or issues
-- Suggest new features or improvements
-- Submit pull requests
-- Share your experimental results
-
-## 📧 Contact
-
-For questions or collaborations, please contact:
-- **Zhuoyi Shang**: [shangzhuoyi@example.com](mailto:shangzhuoyi@example.com)
-- **Project Repository**: [https://github.com/your-repo/Model_lineage](https://github.com/your-repo/Model_lineage)
-
-## 🙏 Acknowledgments
-
-This work was supported by [funding sources]. We thank the open-source community for providing excellent tools and pre-trained models that made this research possible.
-
----
-
-**Note**: This is a research project. The code and methods are provided for academic purposes. Please use responsibly and cite appropriately if you build upon this work.
-
