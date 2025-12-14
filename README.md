@@ -3,7 +3,7 @@
 This repository contains the official implementation for the paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
 
 ## Table of Contents
-- [Abstract](#-abstract)- [Key Features](#-key-features)- [Methodology](#-methodology)
+- [Abstract](#-abstract)-[Methodology](#-methodology)
 - [Environment Setup](#️-environment-setup)
 - [Quick Start (Reviewer Mode)](#-quick-start-reviewer-mode)
 - [Full Reproduction Pipeline](#-full-reproduction-pipeline)
