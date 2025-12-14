@@ -72,10 +72,8 @@ For reviewers or users who want to quickly verify the results using our pre-trai
 
 ### Prerequisites for Quick Start
 Ensure you have the following files in place (provided in the supplementary material):
-- **MobileNet Checkpoint**: `data/models/small_model/mobilenet_model.pth`
-- **MobileNet Data**: `data/embeddings/small_model/test_M_data.pth`
-- **ResNet Checkpoint**: `data/models/small_model/resnet_model.pth`
-- **ResNet Data**: `data/embeddings/small_model/test_R_data.pth`
+- **MobileNet Checkpoint**: `data/embeddings/small_model/test_M_data.pth`
+- **ResNet Checkpoint**: `data/embeddings/small_model/test_R_data.pth`
 
 ### 1. Evaluate MobileNet Lineage (Test M)
 Evaluates the lineage detector trained on MobileNet features (dim=1280).
