@@ -343,14 +343,14 @@ All experiments are driven by YAML configuration files in the `configs/` directo
 
 ### LLM Configurations
 Settings for various LLM families with model paths, evaluation tasks, and adapter configurations:
-- **`configs/llm/qwen2_5.yaml`**: Qwen 2.5 family (1.5B, 3B, 7B)
+- **`configs/llm/qwen2_5.yaml`**: Qwen 2.5 family
   - Evaluation tasks: GSM8K, MMLU, HellaSwag, HumanEval
   - Fine-tuning adapters for different domains
-- **`configs/llm/llama3.yaml`**: Llama 3 family (8B, 70B)
-- **`configs/llm/mistral.yaml`**: Mistral family (7B)
-- **`configs/llm/gemma.yaml`**: Gemma family (2B, 7B)
-- **`configs/llm/phi4.yaml`**: Phi-4 family (14B)
-- **`configs/llm/qwen3.yaml`**: Qwen 3 (Latest version)
+- **`configs/llm/llama3.yaml`**: Llama 3 family
+- **`configs/llm/mistral.yaml`**: Mistral family
+- **`configs/llm/gemma.yaml`**: Gemma family
+- **`configs/llm/phi4.yaml`**: Phi-4 family
+- **`configs/llm/qwen3.yaml`**: Qwen 3
 
 ### Diffusion Model Configurations
 **`configs/diffusion_config.yaml`**: Settings for Stable Diffusion lineage detection
