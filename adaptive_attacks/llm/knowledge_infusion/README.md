@@ -184,16 +184,6 @@ FINETUNE_CONFIG = {
 }
 ```
 
-## Expected Results
-
-### Lineage Similarity (Example)
-
-| Variant | Training Samples | Expected Similarity | Description |
-|---------|-----------------|---------------------|-------------|
-| B1      | 5               | > 0.3               | Low similarity |
-| B2      | 10              | > 0.4               | Medium similarity |
-| B3      | 20              | > 0.5               | High similarity |
-
 ### Interpretation
 
 1. **Monotonic Increase**: If `Sim(A,B1) < Sim(A,B2) < Sim(A,B3)`:
@@ -254,25 +244,3 @@ adaptive_attacks/llm/knowledge_infusion/
 
 4. **LoRA merge fails**
    **Solution**: Ensure base model and LoRA adapter are compatible versions
-
-## Citation
-
-If you use this attack in your research, please cite:
-
-```bibtex
-@inproceedings{modellineage2024,
-  title={Model Lineage Attestation via Knowledge Vectorization},
-  author={[Your Name]},
-  booktitle={[Conference]},
-  year={2024}
-}
-```
-
-## Related Attacks
-
-- [Knowledge Overwriting Attack](../knowledge_overwriting/README.md): Replace knowledge through adversarial finetuning
-- [Weight Perturbation Attack](../../small_model/weight_perturbation/README.md): Direct parameter space manipulation
-
-## License
-
-This code is for research purposes only. See repository LICENSE for details.

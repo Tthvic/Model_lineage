@@ -117,16 +117,6 @@ TRAINING_CONFIG = {
 }
 ```
 
-## Expected Results
-
-| Pruning Ratio | Expected Accuracy | Description |
-|---------------|-------------------|-------------|
-| 0% | >0.85 | Baseline (no pruning) |
-| 20% | >0.80 | Low pruning - minimal impact |
-| 30% | >0.75 | Medium pruning - still robust |
-| 50% | >0.70 | High pruning - some degradation |
-| 70% | >0.60 | Very high - significant degradation |
-
 ## Evaluation Metrics
 
 1. **Accuracy**: Percentage of correct lineage classifications
@@ -160,8 +150,4 @@ Triplet loss with margin=0.4:
 4. **Model Independence**: Each pruning level uses a fresh copy of the original trained model
 5. **Robustness Testing**: Tests whether lineage detection survives aggressive model compression
 
-## Related Experiments
 
-- **Knowledge Infusion**: Tests lineage detection when knowledge from one model is injected into another
-- **Knowledge Overwriting**: Tests detection when model knowledge is modified through fine-tuning  
-- **Weight Perturbation (noise)**: Similar experiment but adds Gaussian noise instead of removing weights
