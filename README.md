@@ -336,7 +336,7 @@ The diffusion experiments demonstrate that our method is robust to:
 All experiments are driven by YAML configuration files in the `configs/` directory.
 
 ### Small Model Configurations
-- **`configs/small_model/mobilenet_caltech.yaml`**: Settings for MobileNet/ResNet on Caltech-101
+**`configs/small_model/mobilenet_caltech.yaml`**: Settings for MobileNet/ResNet on Caltech-101
   - Batch size, learning rate, dataset paths
   - Model architectures (MobileNetV2, ResNet18)
   - Feature dimensions and embedding sizes
@@ -353,7 +353,7 @@ Settings for various LLM families with model paths, evaluation tasks, and adapte
 - **`configs/llm/qwen3.yaml`**: Qwen 3 (Latest version)
 
 ### Diffusion Model Configurations
-- **`configs/diffusion_config.yaml`**: Settings for Stable Diffusion lineage detection
+**`configs/diffusion_config.yaml`**: Settings for Stable Diffusion lineage detection
   - Parent/child model pairs
   - U-Net feature extraction layers
   - Training hyperparameters
