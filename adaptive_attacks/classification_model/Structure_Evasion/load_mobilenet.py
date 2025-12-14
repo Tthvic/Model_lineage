@@ -98,9 +98,7 @@ def load_pmodels(pname, modeltype, pcflag,initFlag=False):
 
         def extract_features(self, x):
             """
-            提取全连接层 (classifier) 之前的特征
             """
-            # 去掉最后的分类器部分，保留特征提取部分
             features = self.module.features(x)
             print(features.shape,"shape4")
             features=torch.mean(features,dim=[-1,-2])
@@ -113,13 +111,11 @@ def load_pmodels(pname, modeltype, pcflag,initFlag=False):
     return model
 
 def get_pS_names(filename):
-    # 定义正则表达式
+
     pattern = r"((?:Imgnet|Pet|CIFAR)_\d+_(?:Calt|TINY|TINYIMG|Flowers)_\d+\.pth(?:_epoch\d+\.pth)?)"
     
-    # 使用 re.search 查找匹配的部分
     match = re.search(pattern, filename)
     
-    # 如果找到匹配项，则返回匹配的字符串；否则返回 None
     if match:
         print(filename, match.group(1), "match.group(1)")
         return match.group(1)
@@ -127,41 +123,14 @@ def get_pS_names(filename):
 
 
 def get_yeye_names(filename):
-    # (?:[A-Za-z]+_\d+_)? 表示可选的前缀，如 "Pet_4_"
-    # 后面跟上三种格式中的一种，再接上 ".pth_epoch" + 数字 + ".pth"
-    # 用 (?:^|_) 匹配字符串开头或者下划线作为前缀，然后捕获目标部分
     pattern = r'(?:^|_)(((?:CIFAR_\d+_Flowers_\d+)|(?:Imgnet_\d+_Calt_\d+)|(?:Pet_\d+_TINYIMG_\d+)|(?:TINYIMG_\d+))\.pth_epoch\d+\.pth)(?=_epoch|$)'
     match = re.search(pattern, filename)
     return match.group(1) if match else None
 
 
-# def get_p_names(filename):
-#     """
-#     从给定的文件名字符串中提取特定格式的子串。
-
-#     参数:
-#     - filename (str): 包含目标子串的文件名字符串。
-
-#     返回:
-#     - str: 第一个匹配项。如果没有找到匹配项，则返回空字符串。
-#     """
-#     # 更精确的正则表达式模式，针对提供的例子优化
-#     pattern = r"([A-Za-z]+_\d+\.pth)(?=_epoch\d+\.pth|$)"
-
-#     # 查找匹配项
-#     match = re.search(pattern, filename)
-
-#     if match:
-#         return match.group(0)
-#     else:
-#         return ""
 
 def get_p_names(filename):
-    """
-    从文件名中提取 Calt_<number>.pth 形式的父模型名
-    例如:
-    Imgnet_17_Calt_7_epoch6_epoch2.pth -> Calt_7.pth
-    """
+
     pattern = r"(Calt_\d+)"
 
     match = re.search(pattern, filename)

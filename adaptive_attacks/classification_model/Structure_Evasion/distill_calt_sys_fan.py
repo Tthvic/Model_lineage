@@ -154,9 +154,8 @@ if __name__ == '__main__':
         select_class=select_classes[idx]
         train_loader,test_loader=get_data_loader(select_class)
         save_dir = './distilled_model3_synth_fans'
-        # 保存student初始参数
+
         # torch.save(student_model.state_dict(), os.path.join(save_dir, f'Calt_{idx}_init.pth'))
-        # 蒸馏训练
+ 
         student_model = train_distill(student_model, teacher_model, train_loader, test_loader, args.device)
-        # 保存student模型
         torch.save(student_model.state_dict(), os.path.join(save_dir, f'Calt_{idx}.pth'))

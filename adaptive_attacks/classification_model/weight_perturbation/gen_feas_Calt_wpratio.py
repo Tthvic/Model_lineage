@@ -34,7 +34,6 @@ def set_seed(seed_value):
     torch.backends.cudnn.benchmark = False
 
 def load_wcmodels(pname):
-           # 获取当前文件所在目录
     pmodelpath=MODELPATH
     modelpath = os.path.join(pmodelpath, pname)
     newdict = torch.load(modelpath)
@@ -60,10 +59,6 @@ def load_wcmodels(pname):
             self.registered_features = output
 
         def extract_features(self, x):
-            """
-            提取全连接层 (classifier) 之前的特征
-            """
-            # 去掉最后的分类器部分，保留特征提取部分
             features = self.module.features(x)
             print(features.shape,"shape4")
             features=torch.mean(features,dim=[-1,-2])
@@ -75,15 +70,11 @@ def load_wcmodels(pname):
     model.load_state_dict(newdict)
     return model
 
-
-
-
-# 比较两模型的参数
 def compare_models(model1, model2):
     models_differ = 0
     for key_item_1, key_item_2 in zip(model1.state_dict().items(), model2.state_dict().items()):
         if torch.equal(key_item_1[1], key_item_2[1]):
-            pass  # 参数相同
+            pass 
         else:
             models_differ += 1
             if (key_item_1[0] == key_item_2[0]):
@@ -94,12 +85,6 @@ def compare_models(model1, model2):
                 raise Exception("Models have different keys, cannot compare.")
     if models_differ == 0:
         print("The two models have identical parameters.")
-
-
-# 调用函数
-# test_initmodels()
-    # 调用函数
-    # test_initmodels()
 
 
 def normalize_vector(vector):
@@ -117,11 +102,7 @@ def normalize_vector(vector):
 
 
 def normalize_and_add_vectors(init_vector, currtask_vector):
-    """归一化并加和两个任务向量"""
-    # 归一化
-    # init_vector.vector = normalize_vector(init_vector.vector)
-    # currtask_vector.vector = normalize_vector(currtask_vector.vector)
-    # 加和任务向量
+
     inited_task_vector = init_vector + currtask_vector
     return inited_task_vector
 

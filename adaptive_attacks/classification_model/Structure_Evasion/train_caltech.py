@@ -1,4 +1,3 @@
-#使用CALTECH101训练模型，20个6分类作为父亲模型，共60个4分类作为子模型
 import os
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -14,7 +13,6 @@ import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader, random_split, Subset
 import random
 from caltech101 import *
-####SZY   ./Caltmodels/{tt}_{epoch}.pth':每一步微调得到的模型
 
 def set_seed(seed_value):
     """Set seed for reproducibility.
@@ -141,7 +139,7 @@ def train(model, train_dataloader, test_dataloader, device, tt):
     classifier = model.to(device)  # Move model to the specified device
     # 随机选择 epoch 和 lr
     random_epoch = random.randint(60, 100)
-    # random_lr = 10 ** random.uniform(-4, -3)  # 生成 0.00001 ~ 0.0001 之间的随机值
+    # random_lr = 10 ** random.uniform(-4, -3) 
     random_lr=0.001
     optimizer = optim.Adam(classifier.parameters(), lr=random_lr)
     classifier.train()  # Set model to training mode
@@ -221,7 +219,6 @@ def main():
             return args
 
     def add_num_class_to_args(args, num_class):
-        # 创建一个新的命名空间，包含原始args的所有属性和新的num_class属性
         new_args = argparse.Namespace(**vars(args))
         setattr(new_args, 'num_class', num_class)
         return new_args

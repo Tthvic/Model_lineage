@@ -1,4 +1,3 @@
-# 定义训练过程
 import os
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -152,7 +151,7 @@ def test(encnet, prenet, test_loader, contrastive_loss_fn, epoch, name):
 
 def main():
 
-    index = 0  # 假设你想提取批次大小为 16 的数据，并且当前批次的起始位置为 index
+    index = 0 
     batch_size = 40
     encnet = TransformerEncoder(feat_dim=1280)
     encnet = encnet.to('cuda:0')
@@ -174,11 +173,9 @@ def main():
             fb_afea,fcfea,fpfea=falsedata[0].to('cuda:0'),falsedata[1].to('cuda:0'),falsedata[2].to('cuda:0')
             fencb_afea, fenccfea=encnet(fb_afea), encnet(fcfea)
             fsumknow=prenet(fencb_afea,fenccfea)
-            # 交叉计算三元组损失
-            loss1 = triplet_loss_fn(pknow, sumknow, fsumknow)  # 标准三元组
-            # loss2 = triplet_loss_fn(fpfea,pknow, fsumknow)  # 交换负样本
-            loss3 = triplet_loss_fn(sumknow, pknow, fsumknow)  # 交换 anchor
-            # 计算最终损失（可以使用加权平均）
+            loss1 = triplet_loss_fn(pknow, sumknow, fsumknow)  
+            # loss2 = triplet_loss_fn(fpfea,pknow, fsumknow) 
+            loss3 = triplet_loss_fn(sumknow, pknow, fsumknow)  
             loss = loss1 + loss3
             # loss = triplet_loss_fn(pknow, sumknow, fsumknow)
             # Backpropagation and optimization
