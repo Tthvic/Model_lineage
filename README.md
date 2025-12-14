@@ -2,7 +2,7 @@
 
 This repository contains the official implementation for the paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
 
-## � Table of Contents
+## Table of Contents
 - [Abstract](#-abstract)- [Key Features](#-key-features)- [Methodology](#-methodology)
 - [Environment Setup](#️-environment-setup)
 - [Quick Start (Reviewer Mode)](#-quick-start-reviewer-mode)
@@ -19,7 +19,7 @@ This repository contains the official implementation for the paper **"Attesting 
 
 ---
 
-## �📄 Abstract
+## 📄 Abstract
 
 The fine-tuning technique in deep learning gives rise to an emerging lineage relationship among models. This lineage provides a promising perspective for addressing security concerns such as unauthorized model redistribution and false claim of model provenance, that are particularly pressing in open-source model libraries where robust lineage verification mechanisms are often lacking. Existing approaches to model lineage detection primarily rely on static architectural similarities, which are insufficient to capture the dynamic evolution of knowledge that underlies true lineage relationships. Drawing inspiration from the genetic mechanism of human evolution, we tackle the problem of model lineage attestation by verifying the joint trajectory of knowledge evolution and parameter modification. To this end, we propose a novel model lineage attestation framework. In our framework, model editing is first leveraged to quantify parameter-level changes introduced by fine-tuning. Subsequently, we introduce a novel knowledge vectorization mechanism that refines the evolved knowledge within the edited models into compact representations by the assistance of probe samples. These embeddings serve as the foundation for verifying the arithmetic consistency of knowledge relationships across models, thereby enabling robust attestation of model lineage. Extensive experimental evaluations demonstrate the effectiveness and resilience of our approach in a variety of adversarial scenarios in the real world. Our method consistently achieves reliable lineage verification across a broad spectrum of model types, including vision classifiers, diffusion models, and large language models.
 
@@ -514,7 +514,7 @@ See [`adaptive_attacks/README.md`](adaptive_attacks/README.md) for comprehensive
 
 ---
 
-## � Baseline Comparisons
+## Baseline Comparisons
 
 We compare our method with state-of-the-art model lineage detection and watermarking approaches.
 
