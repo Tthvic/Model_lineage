@@ -260,12 +260,12 @@ python scripts/llm/train_lineage.py --config configs/llm/qwen2_5.yaml
 ```
 
 **Supported LLM Families:**
-- **Qwen 2.5**: `configs/llm/qwen2_5.yaml` (1.5B, 3B, 7B models)
-- **Llama 3**: `configs/llm/llama3.yaml` (8B, 70B models)
-- **Mistral**: `configs/llm/mistral.yaml` (7B models)
-- **Gemma**: `configs/llm/gemma.yaml` (2B, 7B models)
-- **Phi-4**: `configs/llm/phi4.yaml` (14B models)
-- **Qwen 3**: `configs/llm/qwen3.yaml` (Latest Qwen models)
+- **Qwen 2.5**: `configs/llm/qwen2_5.yaml`
+- **Llama 3**: `configs/llm/llama3.yaml`
+- **Mistral**: `configs/llm/mistral.yaml`
+- **Gemma**: `configs/llm/gemma.yaml`
+- **Phi-4**: `configs/llm/phi4.yaml`
+- **Qwen 3**: `configs/llm/qwen3.yaml`
 
 ### 3. Diffusion Models
 Experiments on Stable Diffusion models with various artistic style fine-tuning using COCO dataset.
