@@ -530,7 +530,7 @@ If you find this repository useful for your research, please cite our paper:
 ```bibtex
 @article{model_lineage_2025,
   title={Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory},
-  author={Zhuoyi Shang, Jiasen Li, Pengzhen Chen, Yanwei Liu, Xiaoyan Gu, Weiping Wang},
+  author={},
   journal={Proceedings of ...},
   year={2025}
 }
