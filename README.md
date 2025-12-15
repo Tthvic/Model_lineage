@@ -493,14 +493,28 @@ See [`adaptive_attacks/README.md`](adaptive_attacks/README.md) for comprehensive
 We compare our method with state-of-the-art model lineage detection and watermarking approaches.
 
 ### IPGuard
-- **Type**: Model watermarking for ownership verification
+- **Type**: Decision-Boundary-Based Model Ownership Verification
 - **Location**: [`Baselines/KRMandIPGUAR/IPGuard/`](Baselines/KRMandIPGUAR/IPGuard/)
 - **Description**: Embeds watermark signatures into model parameters
 
-### Dataset Inference
-- **Type**: Dataset membership inference attack
+### KRM
+- **Type**: Decision-Boundary-Based Model Ownership Verification
 - **Location**: [`Baselines/KRMandIPGUAR/Dataset_inference/`](Baselines/KRMandIPGUAR/Dataset_inference/)
 - **Description**: Infers training data to establish model relationships
+
+
+### Neural Lineage
+- **Type**: Model lineage attestation
+- **Location**: [`Baselines/KRMandIPGUAR/NeuralLineage-main.zip/`](Baselines/NeuralLineage-main.zip/)
+- **Description**: Embeds watermark signatures into model parameters
+
+### Neural_Phylogeny
+- **Type**: Model lineage attestation
+- **Location**: [`Baselines/KRMandIPGUAR/Neural_Phylogeny.zip/`](Baselines/Neural_Phylogeny.zip/)
+- **Description**: Infers training data to establish model relationships
+
+
+
 
 Our method demonstrates superior performance in:
 - ✅ Robustness against adaptive attacks
