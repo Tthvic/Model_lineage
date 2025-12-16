@@ -1,0 +1,40 @@
+2025-12-16 21:04:34,168 [INFO] Logging to ./logs\train_20251216_210434.log
+2025-12-16 21:04:34,168 [INFO] 
+============================================================
+Hierarchical Fine-Tuning Lineage Experiment
+============================================================
+Model: mobilenet
+Device: cuda:0
+Seed: 888
+Data Path: ./Dataset/Caltech101/caltech-101
+============================================================
+
+2025-12-16 21:04:34,169 [INFO] 
+============================================================
+Training Child Models (mobilenet: 6-class ¡ú 6-class)
+============================================================
+Number of models to train: 5
+2025-12-16 21:04:34,169 [INFO] 
+--- Child Model 0 (from Parent 0, mobilenet, 6-class) ---
+Classes: [182, 116, 184, 178, 188, 55]
+2025-12-16 21:06:10,687 [INFO] Child Model 0 - Final Accuracy: 71.67%
+2025-12-16 21:06:10,687 [INFO] 
+--- Child Model 1 (from Parent 1, mobilenet, 6-class) ---
+Classes: [176, 19, 154, 189, 31, 167]
+2025-12-16 21:07:45,317 [INFO] Child Model 1 - Final Accuracy: 40.00%
+2025-12-16 21:07:45,317 [INFO] 
+--- Child Model 2 (from Parent 2, mobilenet, 6-class) ---
+Classes: [97, 118, 86, 172, 30, 125]
+2025-12-16 21:09:23,281 [INFO] Child Model 2 - Final Accuracy: 66.67%
+2025-12-16 21:09:23,281 [INFO] 
+--- Child Model 3 (from Parent 3, mobilenet, 6-class) ---
+Classes: [21, 33, 56, 149, 6, 11]
+2025-12-16 21:11:03,690 [INFO] Child Model 3 - Final Accuracy: 68.33%
+2025-12-16 21:11:03,690 [INFO] 
+--- Child Model 4 (from Parent 4, mobilenet, 6-class) ---
+Classes: [57, 27, 177, 32, 155, 133]
+2025-12-16 21:12:45,308 [INFO] Child Model 4 - Final Accuracy: 56.67%
+2025-12-16 21:12:45,312 [INFO] 
+============================================================
+Child Models Training Complete!
+============================================================

@@ -1,0 +1,19 @@
+2025-12-16 22:07:12,303 [INFO] Logging to ./logs\train_20251216_220712.log
+2025-12-16 22:07:12,303 [INFO] 
+============================================================
+Hierarchical Fine-Tuning Lineage Experiment
+============================================================
+Model: mobilenet
+Device: cuda:0
+Seed: 888
+Data Path: ./Dataset/Caltech101/caltech-101
+============================================================
+
+2025-12-16 22:07:12,304 [INFO] 
+============================================================
+Training Child Models (mobilenet: 6-class ¡ú 6-class)
+============================================================
+Number of models to train: 5
+2025-12-16 22:07:12,304 [INFO] 
+--- Child Model 0 (from Parent 0, mobilenet, 6-class) ---
+Classes: [182, 116, 184, 178, 188, 55]

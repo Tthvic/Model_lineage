@@ -1,0 +1,138 @@
+2025-12-16 21:03:12,931 [INFO] Logging to ./logs\train_20251216_210312.log
+2025-12-16 21:03:12,932 [INFO] 
+============================================================
+Hierarchical Fine-Tuning Lineage Experiment
+============================================================
+Model: resnet18
+Device: cuda:0
+Seed: 888
+Data Path: ./Dataset/Caltech101/caltech-101
+============================================================
+
+2025-12-16 21:03:12,932 [INFO] ============================================================
+Training Parent Models (resnet18)
+============================================================
+2025-12-16 21:03:12,933 [INFO] 
+--- Parent Model 0 (resnet18) ---
+Classes: [40, 7, 1, 47, 17, 15]
+2025-12-16 21:03:26,334 [INFO] 
+Training Model 0, Epochs: 10, LR: 0.000100
+2025-12-16 21:03:30,456 [INFO] Parent Model 0 (resnet18) - Final Accuracy: 99.37%
+2025-12-16 21:03:30,457 [INFO] 
+--- Parent Model 1 (resnet18) ---
+Classes: [14, 8, 47, 6, 43, 57]
+2025-12-16 21:03:43,855 [INFO] 
+Training Model 1, Epochs: 10, LR: 0.000100
+2025-12-16 21:03:49,226 [INFO] Parent Model 1 (resnet18) - Final Accuracy: 98.69%
+2025-12-16 21:03:49,226 [INFO] 
+--- Parent Model 2 (resnet18) ---
+Classes: [57, 34, 5, 37, 27, 2]
+2025-12-16 21:04:02,262 [INFO] 
+Training Model 2, Epochs: 10, LR: 0.000100
+2025-12-16 21:04:05,759 [INFO] Parent Model 2 (resnet18) - Final Accuracy: 96.03%
+2025-12-16 21:04:05,759 [INFO] 
+--- Parent Model 3 (resnet18) ---
+Classes: [1, 5, 13, 14, 32, 38]
+2025-12-16 21:04:19,133 [INFO] 
+Training Model 3, Epochs: 10, LR: 0.000100
+2025-12-16 21:04:22,939 [INFO] Parent Model 3 (resnet18) - Final Accuracy: 100.00%
+2025-12-16 21:04:22,939 [INFO] 
+--- Parent Model 4 (resnet18) ---
+Classes: [1, 35, 12, 45, 41, 44]
+2025-12-16 21:04:36,493 [INFO] 
+Training Model 4, Epochs: 10, LR: 0.000100
+2025-12-16 21:04:39,499 [INFO] Parent Model 4 (resnet18) - Final Accuracy: 99.26%
+2025-12-16 21:04:39,499 [INFO] 
+--- Parent Model 5 (resnet18) ---
+Classes: [34, 26, 14, 28, 37, 17]
+2025-12-16 21:04:52,903 [INFO] 
+Training Model 5, Epochs: 10, LR: 0.000100
+2025-12-16 21:04:54,885 [INFO] Parent Model 5 (resnet18) - Final Accuracy: 97.83%
+2025-12-16 21:04:54,885 [INFO] 
+--- Parent Model 6 (resnet18) ---
+Classes: [51, 55, 0, 48, 59, 10]
+2025-12-16 21:05:08,322 [INFO] 
+Training Model 6, Epochs: 10, LR: 0.000100
+2025-12-16 21:05:12,080 [INFO] Parent Model 6 (resnet18) - Final Accuracy: 94.29%
+2025-12-16 21:05:12,080 [INFO] 
+--- Parent Model 7 (resnet18) ---
+Classes: [44, 27, 21, 17, 9, 13]
+2025-12-16 21:05:25,375 [INFO] 
+Training Model 7, Epochs: 10, LR: 0.000100
+2025-12-16 21:05:27,262 [INFO] Parent Model 7 (resnet18) - Final Accuracy: 97.62%
+2025-12-16 21:05:27,262 [INFO] 
+--- Parent Model 8 (resnet18) ---
+Classes: [48, 21, 6, 5, 24, 57]
+2025-12-16 21:05:41,031 [INFO] 
+Training Model 8, Epochs: 10, LR: 0.000100
+2025-12-16 21:05:46,100 [INFO] Parent Model 8 (resnet18) - Final Accuracy: 99.57%
+2025-12-16 21:05:46,100 [INFO] 
+--- Parent Model 9 (resnet18) ---
+Classes: [22, 54, 59, 38, 16, 51]
+2025-12-16 21:05:59,404 [INFO] 
+Training Model 9, Epochs: 10, LR: 0.000100
+2025-12-16 21:06:01,320 [INFO] Parent Model 9 (resnet18) - Final Accuracy: 97.67%
+2025-12-16 21:06:01,320 [INFO] 
+--- Parent Model 10 (resnet18) ---
+Classes: [2, 46, 29, 34, 7, 24]
+2025-12-16 21:06:15,267 [INFO] 
+Training Model 10, Epochs: 10, LR: 0.000100
+2025-12-16 21:06:18,467 [INFO] Parent Model 10 (resnet18) - Final Accuracy: 98.00%
+2025-12-16 21:06:18,468 [INFO] 
+--- Parent Model 11 (resnet18) ---
+Classes: [5, 35, 18, 53, 40, 39]
+2025-12-16 21:06:31,719 [INFO] 
+Training Model 11, Epochs: 10, LR: 0.000100
+2025-12-16 21:06:33,288 [INFO] Parent Model 11 (resnet18) - Final Accuracy: 98.59%
+2025-12-16 21:06:33,288 [INFO] 
+--- Parent Model 12 (resnet18) ---
+Classes: [56, 55, 23, 36, 12, 45]
+2025-12-16 21:06:46,915 [INFO] 
+Training Model 12, Epochs: 10, LR: 0.000100
+2025-12-16 21:06:48,797 [INFO] Parent Model 12 (resnet18) - Final Accuracy: 96.30%
+2025-12-16 21:06:48,797 [INFO] 
+--- Parent Model 13 (resnet18) ---
+Classes: [4, 2, 42, 14, 49, 18]
+2025-12-16 21:07:02,584 [INFO] 
+Training Model 13, Epochs: 10, LR: 0.000100
+2025-12-16 21:07:08,916 [INFO] Parent Model 13 (resnet18) - Final Accuracy: 100.00%
+2025-12-16 21:07:08,916 [INFO] 
+--- Parent Model 14 (resnet18) ---
+Classes: [5, 54, 14, 55, 6, 24]
+2025-12-16 21:07:22,655 [INFO] 
+Training Model 14, Epochs: 10, LR: 0.000100
+2025-12-16 21:07:27,855 [INFO] Parent Model 14 (resnet18) - Final Accuracy: 99.59%
+2025-12-16 21:07:27,855 [INFO] 
+--- Parent Model 15 (resnet18) ---
+Classes: [17, 29, 40, 53, 23, 10]
+2025-12-16 21:07:41,721 [INFO] 
+Training Model 15, Epochs: 10, LR: 0.000100
+2025-12-16 21:07:44,726 [INFO] Parent Model 15 (resnet18) - Final Accuracy: 90.67%
+2025-12-16 21:07:44,726 [INFO] 
+--- Parent Model 16 (resnet18) ---
+Classes: [23, 22, 13, 42, 17, 44]
+2025-12-16 21:07:58,447 [INFO] 
+Training Model 16, Epochs: 10, LR: 0.000100
+2025-12-16 21:08:00,371 [INFO] Parent Model 16 (resnet18) - Final Accuracy: 98.88%
+2025-12-16 21:08:00,371 [INFO] 
+--- Parent Model 17 (resnet18) ---
+Classes: [59, 43, 41, 4, 38, 40]
+2025-12-16 21:08:14,109 [INFO] 
+Training Model 17, Epochs: 10, LR: 0.000100
+2025-12-16 21:08:18,998 [INFO] Parent Model 17 (resnet18) - Final Accuracy: 99.56%
+2025-12-16 21:08:18,999 [INFO] 
+--- Parent Model 18 (resnet18) ---
+Classes: [10, 34, 46, 15, 59, 29]
+2025-12-16 21:08:32,839 [INFO] 
+Training Model 18, Epochs: 10, LR: 0.000100
+2025-12-16 21:08:34,370 [INFO] Parent Model 18 (resnet18) - Final Accuracy: 94.20%
+2025-12-16 21:08:34,370 [INFO] 
+--- Parent Model 19 (resnet18) ---
+Classes: [24, 17, 40, 44, 35, 14]
+2025-12-16 21:08:48,175 [INFO] 
+Training Model 19, Epochs: 10, LR: 0.000100
+2025-12-16 21:08:50,442 [INFO] Parent Model 19 (resnet18) - Final Accuracy: 96.91%
+2025-12-16 21:08:50,446 [INFO] 
+============================================================
+Parent Models Training Complete!
+============================================================

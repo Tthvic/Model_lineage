@@ -1,0 +1,142 @@
+2025-12-16 21:38:52,428 [INFO] ============================================================
+2025-12-16 21:38:52,428 [INFO] Hierarchical Fine-Tuning with Pruning Experiment
+2025-12-16 21:38:52,428 [INFO] ============================================================
+2025-12-16 21:38:52,428 [INFO] Device: cuda:0
+2025-12-16 21:38:52,428 [INFO] Models: resnet18, mobilenet
+2025-12-16 21:38:52,428 [INFO] Experiment: rebuttal
+2025-12-16 21:38:52,428 [INFO] Seed: 888
+2025-12-16 21:38:52,428 [INFO] Pruning rates: [0.3, 0.4, 0.5, 0.6, 0.7]
+2025-12-16 21:38:52,428 [INFO] ============================================================
+2025-12-16 21:38:52,428 [INFO] 
+############################################################
+2025-12-16 21:38:52,428 [INFO] Evaluating: RESNET18
+2025-12-16 21:38:52,428 [INFO] ############################################################
+2025-12-16 21:38:52,428 [INFO] 
+============================================================
+2025-12-16 21:38:52,428 [INFO] Child Model Experiment (resnet18): 6-class ¡ú 6-class
+2025-12-16 21:38:52,428 [INFO] ============================================================
+2025-12-16 21:38:52,428 [INFO] Found 5 trained child models: [0, 1, 2, 3, 4]
+2025-12-16 21:38:52,428 [INFO] 
+Child Model 0 (from Parent 0, resnet18, 6-class)
+2025-12-16 21:38:52,428 [INFO] Classes: [182, 116, 184, 178, 188, 55]
+2025-12-16 21:40:18,709 [INFO]   Unpruned: 71.67%
+2025-12-16 21:40:18,828 [INFO]   [DEBUG] Pruning 30%: 3411268/11169984 params zeroed (30.54%)
+2025-12-16 21:40:18,850 [INFO]   Pruned 30%: 68.33% (Sparsity: 30.54%)
+2025-12-16 21:40:18,917 [INFO]   [DEBUG] Pruning 40%: 4548356/11169984 params zeroed (40.72%)
+2025-12-16 21:40:18,940 [INFO]   Pruned 40%: 68.33% (Sparsity: 40.72%)
+2025-12-16 21:40:19,002 [INFO]   [DEBUG] Pruning 50%: 5685447/11169984 params zeroed (50.90%)
+2025-12-16 21:40:19,023 [INFO]   Pruned 50%: 71.67% (Sparsity: 50.90%)
+2025-12-16 21:40:19,090 [INFO]   [DEBUG] Pruning 60%: 6822538/11169984 params zeroed (61.08%)
+2025-12-16 21:40:19,110 [INFO]   Pruned 60%: 55.00% (Sparsity: 61.08%)
+2025-12-16 21:40:19,175 [INFO]   [DEBUG] Pruning 70%: 7959624/11169984 params zeroed (71.26%)
+2025-12-16 21:40:19,193 [INFO]   Pruned 70%: 30.00% (Sparsity: 71.26%)
+2025-12-16 21:40:19,236 [INFO] 
+Child Model 1 (from Parent 1, resnet18, 6-class)
+2025-12-16 21:40:19,237 [INFO] Classes: [176, 19, 154, 189, 31, 167]
+2025-12-16 21:41:46,228 [INFO]   Unpruned: 80.00%
+2025-12-16 21:41:46,255 [INFO]   [DEBUG] Pruning 30%: 3411268/11169984 params zeroed (30.54%)
+2025-12-16 21:41:46,272 [INFO]   Pruned 30%: 80.00% (Sparsity: 30.54%)
+2025-12-16 21:41:46,350 [INFO]   [DEBUG] Pruning 40%: 4548356/11169984 params zeroed (40.72%)
+2025-12-16 21:41:46,366 [INFO]   Pruned 40%: 76.67% (Sparsity: 40.72%)
+2025-12-16 21:41:46,435 [INFO]   [DEBUG] Pruning 50%: 5685447/11169984 params zeroed (50.90%)
+2025-12-16 21:41:46,452 [INFO]   Pruned 50%: 65.00% (Sparsity: 50.90%)
+2025-12-16 21:41:46,516 [INFO]   [DEBUG] Pruning 60%: 6822538/11169984 params zeroed (61.08%)
+2025-12-16 21:41:46,532 [INFO]   Pruned 60%: 41.67% (Sparsity: 61.08%)
+2025-12-16 21:41:46,601 [INFO]   [DEBUG] Pruning 70%: 7959624/11169984 params zeroed (71.26%)
+2025-12-16 21:41:46,617 [INFO]   Pruned 70%: 30.00% (Sparsity: 71.26%)
+2025-12-16 21:41:46,662 [INFO] 
+Child Model 2 (from Parent 2, resnet18, 6-class)
+2025-12-16 21:41:46,662 [INFO] Classes: [97, 118, 86, 172, 30, 125]
+2025-12-16 21:43:18,414 [INFO]   Unpruned: 76.67%
+2025-12-16 21:43:18,435 [INFO]   [DEBUG] Pruning 30%: 3411268/11169984 params zeroed (30.54%)
+2025-12-16 21:43:18,454 [INFO]   Pruned 30%: 73.33% (Sparsity: 30.54%)
+2025-12-16 21:43:18,519 [INFO]   [DEBUG] Pruning 40%: 4548356/11169984 params zeroed (40.72%)
+2025-12-16 21:43:18,536 [INFO]   Pruned 40%: 71.67% (Sparsity: 40.72%)
+2025-12-16 21:43:18,617 [INFO]   [DEBUG] Pruning 50%: 5685447/11169984 params zeroed (50.90%)
+2025-12-16 21:43:18,635 [INFO]   Pruned 50%: 60.00% (Sparsity: 50.90%)
+2025-12-16 21:43:18,689 [INFO]   [DEBUG] Pruning 60%: 6822538/11169984 params zeroed (61.08%)
+2025-12-16 21:43:18,710 [INFO]   Pruned 60%: 41.67% (Sparsity: 61.08%)
+2025-12-16 21:43:18,773 [INFO]   [DEBUG] Pruning 70%: 7959624/11169984 params zeroed (71.26%)
+2025-12-16 21:43:18,790 [INFO]   Pruned 70%: 18.33% (Sparsity: 71.26%)
+2025-12-16 21:43:18,834 [INFO] 
+Child Model 3 (from Parent 3, resnet18, 6-class)
+2025-12-16 21:43:18,834 [INFO] Classes: [21, 33, 56, 149, 6, 11]
+2025-12-16 21:44:44,809 [INFO]   Unpruned: 85.00%
+2025-12-16 21:44:44,829 [INFO]   [DEBUG] Pruning 30%: 3411268/11169984 params zeroed (30.54%)
+2025-12-16 21:44:44,850 [INFO]   Pruned 30%: 85.00% (Sparsity: 30.54%)
+2025-12-16 21:44:44,911 [INFO]   [DEBUG] Pruning 40%: 4548356/11169984 params zeroed (40.72%)
+2025-12-16 21:44:44,933 [INFO]   Pruned 40%: 85.00% (Sparsity: 40.72%)
+2025-12-16 21:44:45,000 [INFO]   [DEBUG] Pruning 50%: 5685447/11169984 params zeroed (50.90%)
+2025-12-16 21:44:45,020 [INFO]   Pruned 50%: 83.33% (Sparsity: 50.90%)
+2025-12-16 21:44:45,092 [INFO]   [DEBUG] Pruning 60%: 6822538/11169984 params zeroed (61.08%)
+2025-12-16 21:44:45,110 [INFO]   Pruned 60%: 66.67% (Sparsity: 61.08%)
+2025-12-16 21:44:45,175 [INFO]   [DEBUG] Pruning 70%: 7959624/11169984 params zeroed (71.26%)
+2025-12-16 21:44:45,191 [INFO]   Pruned 70%: 23.33% (Sparsity: 71.26%)
+2025-12-16 21:44:45,231 [INFO] 
+Child Model 4 (from Parent 4, resnet18, 6-class)
+2025-12-16 21:44:45,232 [INFO] Classes: [57, 27, 177, 32, 155, 133]
+2025-12-16 21:46:06,125 [INFO]   Unpruned: 76.67%
+2025-12-16 21:46:06,149 [INFO]   [DEBUG] Pruning 30%: 3411268/11169984 params zeroed (30.54%)
+2025-12-16 21:46:06,169 [INFO]   Pruned 30%: 83.33% (Sparsity: 30.54%)
+2025-12-16 21:46:06,230 [INFO]   [DEBUG] Pruning 40%: 4548356/11169984 params zeroed (40.72%)
+2025-12-16 21:46:06,246 [INFO]   Pruned 40%: 83.33% (Sparsity: 40.72%)
+2025-12-16 21:46:06,310 [INFO]   [DEBUG] Pruning 50%: 5685447/11169984 params zeroed (50.90%)
+2025-12-16 21:46:06,329 [INFO]   Pruned 50%: 75.00% (Sparsity: 50.90%)
+2025-12-16 21:46:06,394 [INFO]   [DEBUG] Pruning 60%: 6822538/11169984 params zeroed (61.08%)
+2025-12-16 21:46:06,411 [INFO]   Pruned 60%: 46.67% (Sparsity: 61.08%)
+2025-12-16 21:46:06,478 [INFO]   [DEBUG] Pruning 70%: 7959624/11169984 params zeroed (71.26%)
+2025-12-16 21:46:06,494 [INFO]   Pruned 70%: 35.00% (Sparsity: 71.26%)
+2025-12-16 21:46:06,541 [INFO] 
+############################################################
+2025-12-16 21:46:06,541 [INFO] Evaluating: MOBILENET
+2025-12-16 21:46:06,541 [INFO] ############################################################
+2025-12-16 21:46:06,541 [INFO] 
+============================================================
+2025-12-16 21:46:06,541 [INFO] Child Model Experiment (mobilenet): 6-class ¡ú 6-class
+2025-12-16 21:46:06,542 [INFO] ============================================================
+2025-12-16 21:46:06,542 [INFO] Found 5 trained child models: [0, 1, 2, 3, 4]
+2025-12-16 21:46:06,542 [INFO] 
+Child Model 0 (from Parent 0, mobilenet, 6-class)
+2025-12-16 21:46:06,542 [INFO] Classes: [182, 116, 184, 178, 188, 55]
+2025-12-16 21:47:29,938 [INFO]   Unpruned: 86.67%
+2025-12-16 21:47:29,985 [INFO]   [DEBUG] Pruning 30%: 658771/2197440 params zeroed (29.98%)
+2025-12-16 21:47:30,002 [INFO]   Pruned 30%: 73.33% (Sparsity: 29.98%)
+2025-12-16 21:47:30,081 [INFO]   [DEBUG] Pruning 40%: 878357/2197440 params zeroed (39.97%)
+2025-12-16 21:47:30,100 [INFO]   Pruned 40%: 35.00% (Sparsity: 39.97%)
+2025-12-16 21:47:30,181 [INFO]   [DEBUG] Pruning 50%: 1097952/2197440 params zeroed (49.97%)
+2025-12-16 21:47:30,194 [INFO]   Pruned 50%: 8.33% (Sparsity: 49.97%)
+2025-12-16 21:47:30,275 [INFO]   [DEBUG] Pruning 60%: 1317547/2197440 params zeroed (59.96%)
+2025-12-16 21:47:30,294 [INFO]   Pruned 60%: 6.67% (Sparsity: 59.96%)
+2025-12-16 21:47:30,371 [INFO]   [DEBUG] Pruning 70%: 1537133/2197440 params zeroed (69.95%)
+2025-12-16 21:47:30,393 [INFO]   Pruned 70%: 6.67% (Sparsity: 69.95%)
+2025-12-16 21:47:30,422 [INFO] 
+Child Model 1 (from Parent 1, mobilenet, 6-class)
+2025-12-16 21:47:30,422 [INFO] Classes: [176, 19, 154, 189, 31, 167]
+2025-12-16 21:48:53,712 [INFO]   Unpruned: 71.67%
+2025-12-16 21:48:53,751 [INFO]   [DEBUG] Pruning 30%: 658771/2197440 params zeroed (29.98%)
+2025-12-16 21:48:53,769 [INFO]   Pruned 30%: 46.67% (Sparsity: 29.98%)
+2025-12-16 21:48:53,840 [INFO]   [DEBUG] Pruning 40%: 878357/2197440 params zeroed (39.97%)
+2025-12-16 21:48:53,858 [INFO]   Pruned 40%: 16.67% (Sparsity: 39.97%)
+2025-12-16 21:48:54,012 [INFO]   [DEBUG] Pruning 50%: 1097952/2197440 params zeroed (49.97%)
+2025-12-16 21:48:54,032 [INFO]   Pruned 50%: 16.67% (Sparsity: 49.97%)
+2025-12-16 21:48:54,108 [INFO]   [DEBUG] Pruning 60%: 1317547/2197440 params zeroed (59.96%)
+2025-12-16 21:48:54,127 [INFO]   Pruned 60%: 16.67% (Sparsity: 59.96%)
+2025-12-16 21:48:54,202 [INFO]   [DEBUG] Pruning 70%: 1537133/2197440 params zeroed (69.95%)
+2025-12-16 21:48:54,222 [INFO]   Pruned 70%: 16.67% (Sparsity: 69.95%)
+2025-12-16 21:48:54,255 [INFO] 
+Child Model 2 (from Parent 2, mobilenet, 6-class)
+2025-12-16 21:48:54,255 [INFO] Classes: [97, 118, 86, 172, 30, 125]
+2025-12-16 21:50:20,831 [INFO]   Unpruned: 88.33%
+2025-12-16 21:50:20,876 [INFO]   [DEBUG] Pruning 30%: 658771/2197440 params zeroed (29.98%)
+2025-12-16 21:50:20,894 [INFO]   Pruned 30%: 51.67% (Sparsity: 29.98%)
+2025-12-16 21:50:20,967 [INFO]   [DEBUG] Pruning 40%: 878357/2197440 params zeroed (39.97%)
+2025-12-16 21:50:20,987 [INFO]   Pruned 40%: 35.00% (Sparsity: 39.97%)
+2025-12-16 21:50:21,060 [INFO]   [DEBUG] Pruning 50%: 1097952/2197440 params zeroed (49.97%)
+2025-12-16 21:50:21,076 [INFO]   Pruned 50%: 23.33% (Sparsity: 49.97%)
+2025-12-16 21:50:21,152 [INFO]   [DEBUG] Pruning 60%: 1317547/2197440 params zeroed (59.96%)
+2025-12-16 21:50:21,171 [INFO]   Pruned 60%: 16.67% (Sparsity: 59.96%)
+2025-12-16 21:50:21,241 [INFO]   [DEBUG] Pruning 70%: 1537133/2197440 params zeroed (69.95%)
+2025-12-16 21:50:21,263 [INFO]   Pruned 70%: 16.67% (Sparsity: 69.95%)
+2025-12-16 21:50:21,294 [INFO] 
+Child Model 3 (from Parent 3, mobilenet, 6-class)
+2025-12-16 21:50:21,294 [INFO] Classes: [21, 33, 56, 149, 6, 11]

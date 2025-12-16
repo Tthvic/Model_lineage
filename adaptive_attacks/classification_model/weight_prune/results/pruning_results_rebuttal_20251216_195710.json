@@ -1,0 +1,82 @@
+{
+    "timestamp": "20251216_195710",
+    "config": {
+        "models": [
+            "resnet50",
+            "mobilenet"
+        ],
+        "device": "cuda:0",
+        "experiment": "rebuttal",
+        "seed": 888,
+        "pruning_rates": [
+            0.2,
+            0.3,
+            0.5,
+            0.7
+        ]
+    },
+    "resnet50_child_6cls": {
+        "0": {
+            "parent_id": 0,
+            "classes": [
+                182,
+                116,
+                184,
+                178,
+                188,
+                55
+            ],
+            "results": {
+                "unpruned": 83.33333333333333,
+                "pruned_20": {
+                    "accuracy": 83.33333333333333,
+                    "sparsity": 20.00000852253358
+                },
+                "pruned_30": {
+                    "accuracy": 85.0,
+                    "sparsity": 29.99999147746642
+                },
+                "pruned_50": {
+                    "accuracy": 81.66666666666667,
+                    "sparsity": 50.0
+                },
+                "pruned_70": {
+                    "accuracy": 78.33333333333333,
+                    "sparsity": 70.00000852253358
+                }
+            }
+        }
+    },
+    "mobilenet_child_6cls": {
+        "0": {
+            "parent_id": 0,
+            "classes": [
+                182,
+                116,
+                184,
+                178,
+                188,
+                55
+            ],
+            "results": {
+                "unpruned": 85.0,
+                "pruned_20": {
+                    "accuracy": 81.66666666666667,
+                    "sparsity": 20.0
+                },
+                "pruned_30": {
+                    "accuracy": 66.66666666666667,
+                    "sparsity": 30.0
+                },
+                "pruned_50": {
+                    "accuracy": 13.333333333333334,
+                    "sparsity": 50.0
+                },
+                "pruned_70": {
+                    "accuracy": 16.666666666666668,
+                    "sparsity": 70.0
+                }
+            }
+        }
+    }
+}

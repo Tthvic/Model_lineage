@@ -1,0 +1,74 @@
+{
+    "timestamp": "20251216_221008",
+    "config": {
+        "models": [
+            "resnet18",
+            "mobilenet"
+        ],
+        "device": "cuda:0",
+        "experiment": "rebuttal",
+        "seed": 888,
+        "pruning_rates": [
+            0.2,
+            0.3,
+            0.5,
+            0.7
+        ]
+    },
+    "resnet18_child_6cls": {
+        "0": {
+            "parent_id": 0,
+            "classes": [
+                182,
+                116,
+                184,
+                178,
+                188,
+                55
+            ],
+            "results": {
+                "unpruned": 87.17948717948718,
+                "pruned_30": {
+                    "accuracy": 87.17948717948718,
+                    "sparsity": 30.539596117595156
+                },
+                "pruned_50": {
+                    "accuracy": 62.82051282051282,
+                    "sparsity": 50.89932984684669
+                },
+                "pruned_70": {
+                    "accuracy": 19.23076923076923,
+                    "sparsity": 71.25904567096963
+                }
+            }
+        }
+    },
+    "mobilenet_child_6cls": {
+        "0": {
+            "parent_id": 0,
+            "classes": [
+                182,
+                116,
+                184,
+                178,
+                188,
+                55
+            ],
+            "results": {
+                "unpruned": 85.8974358974359,
+                "pruned_30": {
+                    "accuracy": 60.256410256410255,
+                    "sparsity": 29.97902104266783
+                },
+                "pruned_50": {
+                    "accuracy": 25.641025641025642,
+                    "sparsity": 49.965050240279595
+                },
+                "pruned_70": {
+                    "accuracy": 19.23076923076923,
+                    "sparsity": 69.95107943789137
+                }
+            }
+        }
+    }
+}

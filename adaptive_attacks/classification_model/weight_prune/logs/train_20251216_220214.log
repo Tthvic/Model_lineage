@@ -1,0 +1,27 @@
+2025-12-16 22:02:14,496 [INFO] Logging to ./logs\train_20251216_220214.log
+2025-12-16 22:02:14,496 [INFO] 
+============================================================
+Hierarchical Fine-Tuning Lineage Experiment
+============================================================
+Model: resnet18
+Device: cuda:0
+Seed: 888
+Data Path: ./Dataset/Caltech101/caltech-101
+============================================================
+
+2025-12-16 22:02:14,497 [INFO] 
+============================================================
+Training Child Models (resnet18: 6-class ¡ú 6-class)
+============================================================
+Number of models to train: 5
+2025-12-16 22:02:14,497 [INFO] 
+--- Child Model 0 (from Parent 0, resnet18, 6-class) ---
+Classes: [182, 116, 184, 178, 188, 55]
+2025-12-16 22:04:05,819 [INFO] Child Model 0 - Final Accuracy: 90.62%
+2025-12-16 22:04:05,819 [INFO] 
+--- Child Model 1 (from Parent 1, resnet18, 6-class) ---
+Classes: [176, 19, 154, 189, 31, 167]
+2025-12-16 22:05:59,043 [INFO] Child Model 1 - Final Accuracy: 91.67%
+2025-12-16 22:05:59,043 [INFO] 
+--- Child Model 2 (from Parent 2, resnet18, 6-class) ---
+Classes: [97, 118, 86, 172, 30, 125]

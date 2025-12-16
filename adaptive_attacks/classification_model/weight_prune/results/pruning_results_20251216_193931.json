@@ -1,0 +1,46 @@
+{
+    "timestamp": "20251216_193931",
+    "config": {
+        "model": "mobilenet",
+        "device": "cuda:0",
+        "seed": 888,
+        "pruning_rates": [
+            0.2,
+            0.3,
+            0.5,
+            0.7
+        ]
+    },
+    "child_6cls": {
+        "0": {
+            "parent_id": 0,
+            "classes": [
+                182,
+                116,
+                184,
+                178,
+                188,
+                55
+            ],
+            "results": {
+                "unpruned": 78.57142857142857,
+                "pruned_20": {
+                    "accuracy": 47.61904761904762,
+                    "sparsity": 0.0
+                },
+                "pruned_30": {
+                    "accuracy": 4.761904761904762,
+                    "sparsity": 0.0
+                },
+                "pruned_50": {
+                    "accuracy": 4.761904761904762,
+                    "sparsity": 0.0
+                },
+                "pruned_70": {
+                    "accuracy": 4.761904761904762,
+                    "sparsity": 0.0
+                }
+            }
+        }
+    }
+}
