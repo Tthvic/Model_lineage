@@ -1,14 +1,3 @@
-"""
-Training script for Hierarchical Fine-Tuning Lineage Experiment on Caltech-101
-
-This script trains parent models (20 models with 6-class classification each)
-and child models (60 models with 4-class classification each) to study
-fine-tuning lineage relationships.
-
-Usage:
-    python train_caltech.py --mode train --model mobilenet --device cuda:0
-"""
-
 import os
 import torch
 import numpy as np
