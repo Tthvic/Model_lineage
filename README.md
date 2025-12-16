@@ -494,7 +494,7 @@ We compare our method with state-of-the-art model lineage detection and watermar
 ### KRM
 - **Type**: Decision-Boundary-Based Model Ownership Verification
 - **Location**: [`Baselines/KRMandIPGUAR/Dataset_inference/`](Baselines/KRMandIPGUAR/Dataset_inference/)
-- **Description**: Infers training data to establish model relationships
+- **Description**: Infers training data to establish model relationships.
 
 
 ### Neural Lineage
