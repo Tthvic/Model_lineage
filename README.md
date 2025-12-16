@@ -393,7 +393,6 @@ We provide comprehensive adaptive attack implementations to test the robustness 
 - **Scenario**: Attacker uses a different model (e.g., Llama-3.1-8B-Instruct) to generate answers for test questions, then fine-tunes the target model (e.g., Qwen2.5-1.5B-Policy2) with these answers.
 - **Attack Intensities**: Low (10%), Medium (30%), High (50%)
 - **Location**: [`adaptive_attacks/llm/knowledge_overwriting/`](adaptive_attacks/llm/knowledge_overwriting/)
-- **Expected Robustness**: Lineage similarity > 0.4
 
 ```bash
 cd adaptive_attacks/llm/knowledge_overwriting
@@ -403,7 +402,6 @@ bash run_experiment.sh
 **Knowledge Infusion Attack**
 - **Scenario**: Inject new task-specific knowledge while attempting to hide lineage relationship
 - **Location**: [`adaptive_attacks/llm/knowledge_infusion/`](adaptive_attacks/llm/knowledge_infusion/)
-- **Expected Robustness**: Detection accuracy > 80%
 
 ```bash
 cd adaptive_attacks/llm/knowledge_infusion
@@ -414,7 +412,6 @@ bash run_experiment.sh
 - **Scenario**: Apply magnitude-based pruning to lineage detector to test robustness under model compression
 - **Pruning Ratios**: 0%, 20%, 30%, 50%, 70%
 - **Location**: [`adaptive_attacks/llm/weight_prune/`](adaptive_attacks/llm/weight_prune/)
-- **Expected Robustness**: Detection accuracy > 75% at 50% pruning
 
 ```bash
 cd adaptive_attacks/llm/weight_prune
@@ -426,7 +423,6 @@ bash run_experiment.sh
 **Knowledge Overwriting Attack**
 - **Scenario**: Train fine-tuned model with randomly shuffled labels to overwrite learned representations
 - **Location**: [`adaptive_attacks/classification_model/knowledge_overwriting/`](adaptive_attacks/classification_model/knowledge_overwriting/)
-- **Expected Robustness**: Lineage similarity > 0.6
 
 ```bash
 cd adaptive_attacks/classification_model/knowledge_overwriting
@@ -437,7 +433,6 @@ bash run_experiment.sh
 - **Scenario**: Add Gaussian noise to model weights to obfuscate lineage while maintaining performance
 - **Perturbation Levels**: Low (σ=0.001), Medium (σ=0.005), High (σ=0.01)
 - **Location**: [`adaptive_attacks/classification_model/weight_perturbation/`](adaptive_attacks/classification_model/weight_perturbation/)
-- **Expected Robustness**: Detection accuracy > 75%
 
 ```bash
 cd adaptive_attacks/classification_model/weight_perturbation
@@ -481,7 +476,6 @@ Each attack has its own detailed README with:
 - Attack scenario description
 - Prerequisites and setup instructions
 - Step-by-step execution guide
-- Expected results and interpretation
 - Configuration customization options
 
 See [`adaptive_attacks/README.md`](adaptive_attacks/README.md) for comprehensive overview.
