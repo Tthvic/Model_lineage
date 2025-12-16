@@ -3,10 +3,10 @@ Pruning Experiment Script
 
 This script runs the complete pruning experiment:
 1. Train parent models (6-class)
-2. For each child config (4, 8, 12 classes):
+2. For each child config (6, 8, 12 classes):
    - Fine-tune child models from parents
    - Evaluate unpruned child models
-   - Prune child models at 30%, 50%, 70%
+   - Prune child models at 20%,30%, 50%, 70%
    - Evaluate pruned models
 3. Log all results
 """
