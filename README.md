@@ -50,7 +50,7 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-repo/Model_lineage.git
+   git clone https://github.com/Tthvic/Model_lineage.git
    cd Model_lineage
    ```
 
