@@ -1,6 +1,8 @@
 # Knowledge Representation of Training Data with Adversarial Examples Supporting Decision Boundary 
 
 Code for Knowledge Representation of Training Data with Adversarial Examples Supporting Decision Boundary
+Original code repository: Knowledge Representation of Training Data with Adversarial Examples Supporting Decision Boundaries.
+https://www.dropbox.com/s/upqzelbbtud8c6n/KR-Code.zip?dl=0
 
 ## Getting Started
 To run this repository, we kindly advise you to install python 3.7 and PyTorch 1.8.1 with Anaconda. You may download Anaconda and read the installation instruction on the official website (https://www.anaconda.com/download/).
