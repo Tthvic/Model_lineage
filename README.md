@@ -391,7 +391,6 @@ We provide comprehensive adaptive attack implementations to test the robustness 
 
 **Knowledge Overwriting Attack**
 - **Scenario**: Attacker uses a different model (e.g., Llama-3.1-8B-Instruct) to generate answers for test questions, then fine-tunes the target model (e.g., Qwen2.5-1.5B-Policy2) with these answers.
-- **Attack Intensities**: Low (10%), Medium (30%), High (50%)
 - **Location**: [`adaptive_attacks/llm/knowledge_overwriting/`](adaptive_attacks/llm/knowledge_overwriting/)
 
 ```bash
