@@ -5,7 +5,7 @@ This repository contains the official implementation for the paper **"Attesting 
 ## Table of Contents
 - [Abstract](#-abstract)-[Methodology](#-methodology)
 - [Environment Setup](#️-environment-setup)
-- [Quick Start (Reviewer Mode)](#-quick-start-reviewer-mode)
+- [Quick Start](#-quick-start-reviewer-mode)
 - [Full Reproduction Pipeline](#-full-reproduction-pipeline)
   - [Project Structure](#-project-structure)
   - [Small Models](#1-small-models-mobilenet--resnet)
@@ -396,7 +396,6 @@ We provide comprehensive adaptive attack implementations to test the robustness 
 
 ```bash
 cd adaptive_attacks/llm/knowledge_overwriting
-bash run_experiment.sh
 ```
 
 **Knowledge Infusion Attack**
@@ -405,7 +404,6 @@ bash run_experiment.sh
 
 ```bash
 cd adaptive_attacks/llm/knowledge_infusion
-bash run_experiment.sh
 ```
 
 **Weight Pruning Attack**
@@ -415,7 +413,6 @@ bash run_experiment.sh
 
 ```bash
 cd adaptive_attacks/llm/weight_prune
-bash run_experiment.sh
 ```
 
 #### 2. Vision Model Adaptive Attacks (Classification Models)
@@ -426,7 +423,6 @@ bash run_experiment.sh
 
 ```bash
 cd adaptive_attacks/classification_model/knowledge_overwriting
-bash run_experiment.sh
 ```
 
 **Weight Perturbation Attack**
@@ -436,7 +432,6 @@ bash run_experiment.sh
 
 ```bash
 cd adaptive_attacks/classification_model/weight_perturbation
-bash run_experiment.sh
 ```
 
 **Parameter Perturbation Attack**
