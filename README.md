@@ -474,14 +474,6 @@ We compare our method with state-of-the-art model lineage detection and watermar
 - **Location**: [`Baselines/KRMandIPGUAR/Neural_Phylogeny.zip/`](Baselines/Neural_Phylogeny.zip/)
 - **Description**: Infers training data to establish model relationships
 
-
-
-
-Our method demonstrates superior performance in:
-- ✅ Robustness against adaptive attacks
-- ✅ Generalization across model types (LLM, Vision, Diffusion)
-- ✅ Accuracy in detecting fine-tuning lineage
-- ✅ Resistance to parameter perturbations and model pruning
 ---
 
 ## 🔗 Citation
