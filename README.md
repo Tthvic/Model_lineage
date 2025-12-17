@@ -447,39 +447,6 @@ bash run_experiment.sh
 - **Scenario**: Architectural modifications to evade lineage detection
 - **Location**: [`adaptive_attacks/classification_model/Structure_Evasion/`](adaptive_attacks/classification_model/Structure_Evasion/)
 
-### Quick Start - Adaptive Attacks
-
-1. **Navigate to attack directory**
-   ```bash
-   cd adaptive_attacks/<model_type>/<attack_type>
-   ```
-
-2. **Review configuration**
-   ```bash
-   cat config.py
-   # Adjust paths if needed for your environment
-   ```
-
-3. **Run attack experiment**
-   ```bash
-   bash run_experiment.sh
-   ```
-
-4. **Check results**
-   ```bash
-   cat results/attack_report.txt
-   ```
-
-### Detailed Documentation
-
-Each attack has its own detailed README with:
-- Attack scenario description
-- Prerequisites and setup instructions
-- Step-by-step execution guide
-- Configuration customization options
-
-See [`adaptive_attacks/README.md`](adaptive_attacks/README.md) for comprehensive overview.
-
 ---
 
 ## Baseline Comparisons
