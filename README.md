@@ -3,6 +3,7 @@
 This repository contains the official implementation for the paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
 
 ## Table of Contents
+
 - [Abstract](#-abstract)-[Methodology](#-methodology)
 - [Environment Setup](#️-environment-setup)
 - [Quick Start](#-quick-start-reviewer-mode)
@@ -26,22 +27,27 @@ The fine-tuning technique in deep learning gives rise to an emerging lineage rel
   <img src="Method.png" alt="Methodology Overview" width="90%" />
 </div>
 
+
 ## 🧩 Methodology
 
 Our approach attests model lineage by verifying the consistency between the **Fine-Tuning Trajectory** and the **Knowledge Evolution Path**.
 
 ### 1. Knowledge Vectorization
+
 We introduce a mechanism to vectorize the "knowledge" contained within a model. By extracting feature embeddings from specific layers (e.g., the last convolutional layer of MobileNet/ResNet or the hidden states of LLMs) on a set of probe samples, we construct a high-dimensional representation of the model's knowledge state.
 
 ### 2. Knowledge Evolution & Trajectory
+
 When a parent model $M_P$ is fine-tuned to a child model $M_C$, the knowledge evolves. We model this evolution as a vector transformation in the latent space. The "Fine-Tuning Trajectory" represents the path taken during the optimization process.
 
 ### 3. Lineage Attestation
+
 We train a **Lineage Detector** (a Transformer-based encoder followed by a Relation Network) to learn the mapping between the parent and child knowledge vectors. The detector predicts whether a given pair $(M_P, M_C)$ constitutes a valid lineage by checking if the observed knowledge evolution is consistent with a legitimate fine-tuning trajectory. This method is robust against model obfuscation and independent retraining.
 
 ## 🛠️ Environment Setup
 
 ### Requirements
+
 - **OS**: Linux (validated on Ubuntu 20.04/22.04)
 - **Python**: 3.10+ (Recommended 3.12)
 - **GPU**: NVIDIA GPU with CUDA support (A100 80GB recommended for LLM&Diffusion experiments)
@@ -49,18 +55,21 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Tthvic/Model_lineage.git
    cd Model_lineage
    ```
 
 2. **Create a Conda environment**
+
    ```bash
    conda create -n lineage python=3.12 -y
    conda activate lineage
    ```
 
 3. **Install dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -70,11 +79,14 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
 For reviewers or users who want to quickly verify the results using our pre-trained checkpoints, we provide a **"Reviewer Mode"** for the Small Model experiments.
 
 ### Prerequisites for Quick Start
+
 Ensure you have the following files in place (provided in the supplementary material):
+
 - **MobileNet Checkpoint**: `data/embeddings/small_model/test_M_data.pth`
 - **ResNet Checkpoint**: `data/embeddings/small_model/test_R_data.pth`
 
 ### 1. Evaluate MobileNet Lineage (Test M)
+
 Evaluates the lineage detector trained on MobileNet features (dim=1280).
 
 ```bash
@@ -86,6 +98,7 @@ python scripts/small_model/train_lineage.py \
 ```
 
 ### 2. Evaluate ResNet Lineage (Test R)
+
 Evaluates the lineage detector trained on ResNet features (dim=512).
 
 ```bash
@@ -103,6 +116,7 @@ python scripts/small_model/train_lineage.py \
 This section details how to reproduce the experiments from scratch for all model types.
 
 ### 📂 Project Structure
+
 ```
 .
 ├── adaptive_attacks/              # 🛡️ Adaptive attack implementations
@@ -115,7 +129,7 @@ This section details how to reproduce the experiments from scratch for all model
 │   └── classification_model/      # Vision model adaptive attacks
 │       ├── dataset_utils.py       # Shared data loading utilities
 │       ├── knowledge_overwriting/ # Label shuffling attack
-│       ├── weight_perturbation/   # Weight noise attack
+│       ├── weight_prune/          # Weight prune attack
 │       ├── paramerpertur/         # Parameter perturbation
 │       └── Structure_Evasion/     # Structure evasion attack
 ├── configs/                       # Configuration files for all experiments
@@ -197,16 +211,19 @@ This section details how to reproduce the experiments from scratch for all model
 ```
 
 ### 1. Small Models (MobileNet / ResNet)
+
 Experiments on Caltech-101, Tiny-ImageNet, etc.
 
-**Step 1: Train Parent, Child, and Independent Models**
+**Step 1: Train Parent and Child Models**
 Trains the base models and fine-tuned variants to establish the lineage ground truth.
+
 ```bash
 python scripts/small_model/train_models.py --config configs/small_model/mobilenet_caltech.yaml
 ```
 
 **Step 2: Generate Knowledge Fingerprints**
 Extracts feature embeddings (knowledge vectors) from the trained models.
+
 ```bash
 python scripts/small_model/generate_embeddings.py --config configs/small_model/mobilenet_caltech.yaml --split train
 python scripts/small_model/generate_embeddings.py --config configs/small_model/mobilenet_caltech.yaml --split test
@@ -214,20 +231,24 @@ python scripts/small_model/generate_embeddings.py --config configs/small_model/m
 
 **Step 3: Train Lineage Detector**
 Trains the Transformer/MLP-based detector to distinguish lineage relationships.
+
 ```bash
 python scripts/small_model/train_lineage.py --config configs/small_model/mobilenet_caltech.yaml
 ```
 
 **Step 4: Evaluation**
 Evaluate the trained detector on test sets with different category relationships (parent-child, grandparent-child, non-related).
+
 ```bash
 python scripts/small_model/eval_demo.py
 ```
 
 ### 2. Large Language Models (LLM)
+
 Experiments on Qwen-2.5, Llama-3, Mistral, Gemma, Phi-4 using datasets like GSM8K, MMLU, HellaSwag, HumanEval.
 
 **Step 1: Download Models & Datasets**
+
 ```bash
 # Download Base/Instruct models from HuggingFace
 python scripts/llm/download_models.py --config configs/llm/qwen2_5.yaml
@@ -238,6 +259,7 @@ python scripts/llm/download_datasets.py --config configs/llm/qwen2_5.yaml
 
 **Step 2: Generate Model Outputs (Answers)**
 Generates responses from Parent (Instruct), Child (Fine-tuned), and Independent models.
+
 ```bash
 # Generate for Fine-tuned models (Child)
 python scripts/llm/generate_answers.py --config configs/llm/qwen2_5.yaml --type finetune
@@ -248,17 +270,20 @@ python scripts/llm/generate_answers.py --config configs/llm/qwen2_5.yaml --type 
 
 **Step 3: Extract Knowledge Embeddings**
 Converts model outputs into knowledge vectors using embedding models.
+
 ```bash
 python scripts/llm/generate_embeddings.py --config configs/llm/qwen2_5.yaml --type finetune
 python scripts/llm/generate_embeddings.py --config configs/llm/qwen2_5.yaml --type instruct
 ```
 
 **Step 4: Train Lineage Detector**
+
 ```bash
 python scripts/llm/train_lineage.py --config configs/llm/qwen2_5.yaml
 ```
 
 **Supported LLM Families:**
+
 - **Qwen 2.5**: `configs/llm/qwen2_5.yaml`
 - **Llama 3**: `configs/llm/llama3.yaml`
 - **Mistral**: `configs/llm/mistral.yaml`
@@ -267,26 +292,33 @@ python scripts/llm/train_lineage.py --config configs/llm/qwen2_5.yaml
 - **Qwen 3**: `configs/llm/qwen3.yaml`
 
 ### 3. Diffusion Models
+
 Experiments on Stable Diffusion models with various artistic style fine-tuning using COCO dataset.
 
 Our diffusion model lineage detection extracts features from the U-Net's intermediate layers (specifically Cross-Attention UpBlock features) to capture the knowledge evolution during fine-tuning.
 
 **Step 0: Download COCO Dataset**
 Download COCO 2014 training images and annotations (~13.2GB total).
+
 ```bash
 python scripts/diffusion/download_datasets.py
 ```
+
 This will download:
+
 - COCO train2014 images (~13GB)
 - Annotations including captions (~241MB)
 - Extract to `data/datasets/coco/`
 
 **Step 1: Generate Embeddings**
 Extracts U-Net features from parent and child diffusion models using COCO images as probe samples.
+
 ```bash
 python scripts/diffusion/generate_embeddings.py
 ```
+
 This script:
+
 - Loads parent model (e.g., Stable Diffusion 2-base)
 - Loads child model (e.g., fine-tuned on specific artistic style)
 - Extracts U-Net Cross-Attention UpBlock2D features (320 channels, 32x32)
@@ -294,21 +326,25 @@ This script:
 
 **Step 2: Train Lineage Detector**
 Trains the lineage detector using cosine embedding loss and triplet loss.
+
 ```bash
 python scripts/diffusion/train_lineage.py
 ```
+
 The detector learns to:
+
 - Encode U-Net features into 320-dimensional vectors
 - Predict child knowledge from parent + task vector
 - Distinguish true lineage pairs from negative samples
 
 **Step 3: Test Lineage Detection**
 Tests the trained detector on different model pairs.
+
 ```bash
 python scripts/diffusion/test_lineage.py
 ```
 
-**Adaptive Attack Testing**
+**Adaptive Attack Testing and unrelated_dataset Testing**
 
 Test robustness against parameter perturbation and model pruning attacks:
 
@@ -321,11 +357,13 @@ python scripts/diffusion/test_unrelated_dataset.py
 ```
 
 **Key Features:**
+
 - `test_adaptive_attack.py`: Tests detector on poisoned/attacked model embeddings using specific trigger samples
 - `test_unrelated_dataset.py`: Evaluates detector on CIFAR-10 images to verify it doesn't produce false positives on out-of-distribution data
 - Parameter perturbation and pruning attacks are implemented in `src/diffusion/dataset_with_attacks.py`
 
 The diffusion experiments demonstrate that our method is robust to:
+
 - Gaussian noise addition to model parameters (up to 20% noise ratio)
 - Model pruning (up to 60% sparsity)
 - Different probe datasets (COCO vs CIFAR-10)
@@ -335,13 +373,17 @@ The diffusion experiments demonstrate that our method is robust to:
 All experiments are driven by YAML configuration files in the `configs/` directory.
 
 ### Small Model Configurations
+
 **`configs/small_model/mobilenet_caltech.yaml`**: Settings for MobileNet/ResNet on Caltech-101
+
   - Batch size, learning rate, dataset paths
   - Model architectures (MobileNetV2, ResNet18)
   - Feature dimensions and embedding sizes
 
 ### LLM Configurations
+
 Settings for various LLM families with model paths, evaluation tasks, and adapter configurations:
+
 - **`configs/llm/qwen2_5.yaml`**: Qwen 2.5 family
   - Evaluation tasks: GSM8K, MMLU, HellaSwag, HumanEval
   - Fine-tuning adapters for different domains
@@ -352,12 +394,15 @@ Settings for various LLM families with model paths, evaluation tasks, and adapte
 - **`configs/llm/qwen3.yaml`**: Qwen 3
 
 ### Diffusion Model Configurations
+
 **`configs/diffusion_config.yaml`**: Settings for Stable Diffusion lineage detection
+
   - Parent/child model pairs
   - U-Net feature extraction layers
   - Training hyperparameters
 
 ### Key Configuration Parameters
+
 ```yaml
 # Example: configs/llm/qwen2_5.yaml
 model:
@@ -390,6 +435,7 @@ We provide comprehensive adaptive attack implementations to test the robustness 
 #### 1. Large Language Model (LLM) Adaptive Attacks
 
 **Knowledge Overwriting Attack**
+
 - **Scenario**: Attacker uses a different model (e.g., Llama-3.1-8B-Instruct) to generate answers for test questions, then fine-tunes the target model (e.g., Qwen2.5-1.5B-Policy2) with these answers.
 - **Location**: [`adaptive_attacks/llm/knowledge_overwriting/`](adaptive_attacks/llm/knowledge_overwriting/)
 
@@ -398,6 +444,7 @@ cd adaptive_attacks/llm/knowledge_overwriting
 ```
 
 **Knowledge Infusion Attack**
+
 - **Scenario**: Inject new task-specific knowledge while attempting to hide lineage relationship
 - **Location**: [`adaptive_attacks/llm/knowledge_infusion/`](adaptive_attacks/llm/knowledge_infusion/)
 
@@ -406,6 +453,7 @@ cd adaptive_attacks/llm/knowledge_infusion
 ```
 
 **Weight Pruning Attack**
+
 - **Scenario**: Apply magnitude-based pruning to lineage detector to test robustness under model compression
 - **Pruning Ratios**: 0%, 20%, 30%, 50%, 70%
 - **Location**: [`adaptive_attacks/llm/weight_prune/`](adaptive_attacks/llm/weight_prune/)
@@ -417,6 +465,7 @@ cd adaptive_attacks/llm/weight_prune
 #### 2. Vision Model Adaptive Attacks (Classification Models)
 
 **Knowledge Overwriting Attack**
+
 - **Scenario**: Train fine-tuned model with randomly shuffled labels to overwrite learned representations
 - **Location**: [`adaptive_attacks/classification_model/knowledge_overwriting/`](adaptive_attacks/classification_model/knowledge_overwriting/)
 
@@ -424,66 +473,12 @@ cd adaptive_attacks/llm/weight_prune
 cd adaptive_attacks/classification_model/knowledge_overwriting
 ```
 
-**Weight Perturbation Attack**
-- **Scenario**: Add Gaussian noise to model weights to obfuscate lineage while maintaining performance
-- **Perturbation Levels**: Low (σ=0.001), Medium (σ=0.005), High (σ=0.01)
-- **Location**: [`adaptive_attacks/classification_model/weight_perturbation/`](adaptive_attacks/classification_model/weight_perturbation/)
-
-```bash
-cd adaptive_attacks/classification_model/weight_perturbation
-```
-
 **Parameter Perturbation Attack**
+
 - **Scenario**: Systematic parameter-level perturbations to test detector robustness
 - **Location**: [`adaptive_attacks/classification_model/paramerpertur/`](adaptive_attacks/classification_model/paramerpertur/)
 
 **Structure Evasion Attack**
+
 - **Scenario**: Architectural modifications to evade lineage detection
 - **Location**: [`adaptive_attacks/classification_model/Structure_Evasion/`](adaptive_attacks/classification_model/Structure_Evasion/)
-
----
-
-## Baseline Comparisons
-
-We compare our method with state-of-the-art model lineage detection and watermarking approaches.
-
-### IPGuard
-- **Type**: Decision-Boundary-Based Model Ownership Verification
-- **Location**: [`Baselines/KRMandIPGUAR/IPGuard/`](Baselines/KRMandIPGUAR/IPGuard/)
-- **Description**: Embeds watermark signatures into model parameters
-
-### KRM
-- **Type**: Decision-Boundary-Based Model Ownership Verification
-- **Location**: [`Baselines/KRMandIPGUAR/Dataset_inference/`](Baselines/KRMandIPGUAR/Dataset_inference/)
-- **Description**: Infers training data to establish model relationships.
-
-
-### Neural Lineage
-- **Type**: Model lineage attestation
-- **Location**: [`Baselines/KRMandIPGUAR/NeuralLineage-main.zip/`](Baselines/NeuralLineage-main.zip/)
-- **Description**: Embeds watermark signatures into model parameters
-
-### Neural_Phylogeny
-- **Type**: Model lineage attestation
-- **Location**: [`Baselines/KRMandIPGUAR/Neural_Phylogeny.zip/`](Baselines/Neural_Phylogeny.zip/)
-- **Description**: Infers training data to establish model relationships
-
----
-
-## 🔗 Citation
-
-If you find this repository useful for your research, please cite our paper:
-
-```bibtex
-@article{model_lineage_2025,
-  title={Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory},
-  author={},
-  journal={Proceedings of ...},
-  year={2025}
-}
-```
-
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
