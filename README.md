@@ -115,7 +115,7 @@ python scripts/small_model/train_lineage.py \
 
 This section details how to reproduce the experiments from scratch for all model types.
 
-### 📂 Project Structure
+<!-- ### 📂 Project Structure
 
 ```
 .
@@ -208,7 +208,7 @@ This section details how to reproduce the experiments from scratch for all model
     └── KRMandIPGUAR/              # KRM and IPGuard implementations
         ├── Dataset_inference/      # Dataset inference attack
         └── IPGuard/                # IPGuard watermarking
-```
+``` -->
 
 ### 1. Small Models (MobileNet / ResNet)
 
