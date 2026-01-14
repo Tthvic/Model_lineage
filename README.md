@@ -76,16 +76,18 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
 
 ## 🚀 Quick Start (Reviewer Mode)
 
-For reviewers or users who want to quickly verify the results using our pre-trained checkpoints, we provide a **"Reviewer Mode"** for the Small Model experiments.
+For reviewers or users who want to quickly verify the results using our pre-generated embeddings, we provide a **"Reviewer Mode"** for different model types.
 
-### Prerequisites for Quick Start
+### Small Models (MobileNet & ResNet)
+
+#### Prerequisites
 
 Ensure you have the following files in place (provided in the supplementary material):
 
 - **MobileNet Checkpoint**: `data/embeddings/small_model/test_M_data.pth`
 - **ResNet Checkpoint**: `data/embeddings/small_model/test_R_data.pth`
 
-### 1. Evaluate MobileNet Lineage (Test M)
+#### 1. Evaluate MobileNet Lineage (Test M)
 
 Evaluates the lineage detector trained on MobileNet features (dim=1280).
 
@@ -97,7 +99,7 @@ python scripts/small_model/train_lineage.py \
     --data_dir data/embeddings/small_model/test_M_data.pth
 ```
 
-### 2. Evaluate ResNet Lineage (Test R)
+#### 2. Evaluate ResNet Lineage (Test R)
 
 Evaluates the lineage detector trained on ResNet features (dim=512).
 
@@ -108,6 +110,33 @@ python scripts/small_model/train_lineage.py \
     --checkpoint data/models/small_model/resnet_model.pth \
     --data_dir data/embeddings/small_model/test_R_data.pth
 ```
+
+### Large Language Models (LLM)
+
+We provide pre-generated embeddings for **Qwen-1.5B** models to enable quick testing of the lineage detection system.
+
+#### Prerequisites
+
+The embeddings are already included in the repository at:
+- `data/embeddings/llm/Qwen-1.5B/`
+
+This directory contains:
+- `Qwen_Instruct/`: Parent model (Instruct) embeddings
+- `Finetune/`, `Adapter/`, `Merge/`: Child model embeddings
+- `B-A/`: Parameter difference embeddings
+- `Qwen_random/`: Negative sample embeddings
+
+#### Train and Test Lineage Detector
+
+Train the lineage detector on Qwen-1.5B embeddings:
+
+```bash
+python scripts/llm/qwen_knowledge_relation_training.py
+```
+
+### Diffusion Models
+
+**Note:** Due to the large size of diffusion model checkpoints, we do not provide pre-generated embeddings or Quick Start mode for diffusion experiments. Please follow the [Full Reproduction Pipeline](#3-diffusion-models) to train and test diffusion model lineage detection from scratch.
 
 ---
 
