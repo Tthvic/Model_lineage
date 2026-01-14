@@ -136,7 +136,7 @@ python scripts/llm/qwen_knowledge_relation_training.py
 
 ### Diffusion Models
 
-**Note:** Due to the large size of diffusion model checkpoints, we do not provide pre-generated embeddings or Quick Start mode for diffusion experiments. Please follow the [Full Reproduction Pipeline](#3-diffusion-models) to train and test diffusion model lineage detection from scratch.
+**Note:** Due to the large size of diffusion model embeddings (derived from a probe set of 1,000 images), we do not provide a Quick Start mode (which relies on pre-generated embeddings) for diffusion experiments. Please follow the [Full Reproduction Pipeline](#3-diffusion-models) for detailed instructions.
 
 ---
 
