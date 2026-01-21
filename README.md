@@ -1,6 +1,6 @@
 # Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory
 
-This repository contains the official implementation for the paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
+This repository is the official implementation of the USENIX Security 2026 paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
 
 ## Table of Contents
 
