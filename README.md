@@ -2,8 +2,6 @@
 
 Code for **[Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory](https://www.usenix.org/conference/usenixsecurity26/presentation/shang)** (USENIX Security 2026).
 
-Zhuoyi Shang, Jiasen Li, Pengzhen Chen, Yanwei Liu, Xiaoyan Gu, Weiping Wang
-
 [Paper](https://www.usenix.org/conference/usenixsecurity26/presentation/shang) | [PDF](https://www.usenix.org/system/files/usenixsecurity26-shang.pdf) | [arXiv](https://arxiv.org/abs/2601.11683) | [Artifact](https://zenodo.org/records/17958570) | [BibTeX](#citation)
 
 We verify model lineage by checking the consistency between knowledge evolution and parameter changes along fine-tuning trajectories. The code covers image classifiers, large language models, and diffusion models.
