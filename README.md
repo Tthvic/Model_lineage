@@ -2,24 +2,35 @@
 
 This repository is the official implementation of the USENIX Security 2026 paper **"Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory"**.
 
+**Authors:** Zhuoyi Shang, Jiasen Li, Pengzhen Chen, Yanwei Liu, Xiaoyan Gu, and Weiping Wang.
+
+**Publication:** 35th USENIX Security Symposium (USENIX Security 26), pages 4483–4502, August 2026.
+
+[Paper & proceedings](https://www.usenix.org/conference/usenixsecurity26/presentation/shang) · [Published PDF](https://www.usenix.org/system/files/usenixsecurity26-shang.pdf) · [arXiv](https://arxiv.org/abs/2601.11683) · [Archived artifact](https://doi.org/10.5281/zenodo.17958570) · [Citation](#citation) · [License](#license)
+
 ## Table of Contents
 
-- [Abstract](#-abstract)-[Methodology](#-methodology)
-- [Environment Setup](#️-environment-setup)
-- [Quick Start](#-quick-start-reviewer-mode)
-- [Full Reproduction Pipeline](#-full-reproduction-pipeline)
-  - [Project Structure](#-project-structure)
+- [Abstract](#abstract)
+- [Methodology](#methodology)
+- [Environment Setup](#environment-setup)
+- [Data and Artifacts](#data-and-artifacts)
+- [Quick Start](#quick-start-reviewer-mode)
+- [Full Reproduction Pipeline](#full-reproduction-pipeline)
+  - [Project Structure](#project-structure)
   - [Small Models](#1-small-models-mobilenet--resnet)
   - [Large Language Models](#2-large-language-models-llm)
   - [Diffusion Models](#3-diffusion-models)
-- [Configuration](#-configuration)
-- [Adaptive Attacks](#️-adaptive-attacks-evaluation)
-- [Baseline Comparisons](#-baseline-comparisons)
-- [Citation](#-citation)
+- [Configuration](#configuration)
+- [Adaptive Attacks](#adaptive-attacks-evaluation)
+- [Baseline Comparisons](#baseline-comparisons)
+- [Results and Reproducibility](#results-and-reproducibility)
+- [Citation](#citation)
+- [License](#license)
+- [Contact](#contact)
 
 ---
 
-## 📄 Abstract
+## Abstract
 
 The fine-tuning technique in deep learning gives rise to an emerging lineage relationship among models. This lineage provides a promising perspective for addressing security concerns such as unauthorized model redistribution and false claim of model provenance, that are particularly pressing in open-source model libraries where robust lineage verification mechanisms are often lacking. Existing approaches to model lineage detection primarily rely on static architectural similarities, which are insufficient to capture the dynamic evolution of knowledge that underlies true lineage relationships. Drawing inspiration from the genetic mechanism of human evolution, we tackle the problem of model lineage attestation by verifying the joint trajectory of knowledge evolution and parameter modification. To this end, we propose a novel model lineage attestation framework. In our framework, model editing is first leveraged to quantify parameter-level changes introduced by fine-tuning. Subsequently, we introduce a novel knowledge vectorization mechanism that refines the evolved knowledge within the edited models into compact representations by the assistance of probe samples. These embeddings serve as the foundation for verifying the arithmetic consistency of knowledge relationships across models, thereby enabling robust attestation of model lineage. Extensive experimental evaluations demonstrate the effectiveness and resilience of our approach in a variety of adversarial scenarios in the real world. Our method consistently achieves reliable lineage verification across a broad spectrum of model types, including vision classifiers, diffusion models, and large language models.
 
@@ -28,7 +39,7 @@ The fine-tuning technique in deep learning gives rise to an emerging lineage rel
 </div>
 
 
-## 🧩 Methodology
+## Methodology
 
 Our approach attests model lineage by verifying the consistency between the **Fine-Tuning Trajectory** and the **Knowledge Evolution Path**.
 
@@ -44,7 +55,7 @@ When a parent model $M_P$ is fine-tuned to a child model $M_C$, the knowledge ev
 
 We train a **Lineage Detector** (a Transformer-based encoder followed by a Relation Network) to learn the mapping between the parent and child knowledge vectors. The detector predicts whether a given pair $(M_P, M_C)$ constitutes a valid lineage by checking if the observed knowledge evolution is consistent with a legitimate fine-tuning trajectory. This method is robust against model obfuscation and independent retraining.
 
-## 🛠️ Environment Setup
+## Environment Setup
 
 ### Requirements
 
@@ -56,9 +67,12 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
 
 1. **Clone the repository**
 
+   Install [Git LFS](https://git-lfs.com/) before downloading the released `.pth` artifacts. The following command checks out the code first; fetch the artifacts needed for your experiment using the commands below.
+
    ```bash
-   git clone https://github.com/Tthvic/Model_lineage.git
+   GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Tthvic/Model_lineage.git
    cd Model_lineage
+   git lfs install --local
    ```
 
 2. **Create a Conda environment**
@@ -74,7 +88,23 @@ We train a **Lineage Detector** (a Transformer-based encoder followed by a Relat
    pip install -r requirements.txt
    ```
 
-## 🚀 Quick Start (Reviewer Mode)
+## Data and Artifacts
+
+Run all commands from the repository root unless a section explicitly changes directories.
+
+| Material | Location | Availability |
+| --- | --- | --- |
+| MobileNet and ResNet test embedding bundles | `data/embeddings/small_model/test_M_data.pth`, `test_R_data.pth` | Included through Git LFS |
+| Released small-model lineage detectors | `data/models/small_model/mobilenet_model.pth`, `resnet_model.pth` | Included through Git LFS |
+| Qwen reviewer embeddings | `data/embeddings/llm/Qwen-1.5B/` | Included through Git LFS; see the scope below |
+| Raw datasets and source model weights | `data/datasets/`, `data/models/` | Prepare using the relevant experiment instructions and upstream access requirements |
+| Archived research artifact | [Zenodo, DOI: 10.5281/zenodo.17958570](https://zenodo.org/records/17958570) | Fixed archive published on December 17, 2025; may differ from the current GitHub checkout |
+
+To fetch all published Git LFS artifacts, run `git lfs pull`. To fetch only a particular experiment's artifacts, use its targeted command below. A small text file beginning with `version https://git-lfs.github.com/spec/v1` is an LFS pointer, not a downloaded tensor file.
+
+Store downloaded data, weights, embeddings, and generated results inside this project's `data/` directory. `.gitignore` excludes new local artifacts and caches; the already tracked release artifacts remain versioned through Git LFS. External datasets, models, and baseline code retain their own terms; see [third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Quick Start (Reviewer Mode)
 
 For reviewers or users who want to quickly verify the results using our pre-generated embeddings, we provide a **"Reviewer Mode"** for different model types.
 
@@ -82,10 +112,16 @@ For reviewers or users who want to quickly verify the results using our pre-gene
 
 #### Prerequisites
 
-Ensure you have the following files in place (provided in the supplementary material):
+Download the released embedding bundles and detector checkpoints:
 
-- **MobileNet Checkpoint**: `data/embeddings/small_model/test_M_data.pth`
-- **ResNet Checkpoint**: `data/embeddings/small_model/test_R_data.pth`
+```bash
+git lfs pull --include="data/embeddings/small_model/**,data/models/small_model/**"
+```
+
+- **MobileNet embeddings**: `data/embeddings/small_model/test_M_data.pth`
+- **ResNet embeddings**: `data/embeddings/small_model/test_R_data.pth`
+- **MobileNet detector**: `data/models/small_model/mobilenet_model.pth`
+- **ResNet detector**: `data/models/small_model/resnet_model.pth`
 
 #### 1. Evaluate MobileNet Lineage (Test M)
 
@@ -117,7 +153,13 @@ We provide pre-generated embeddings for **Qwen-1.5B** models to enable quick tes
 
 #### Prerequisites
 
-The embeddings are already included in the repository at:
+Fetch the bundled embeddings:
+
+```bash
+git lfs pull --include="data/embeddings/llm/Qwen-1.5B/**"
+```
+
+The embeddings are included in the repository at:
 - `data/embeddings/llm/Qwen-1.5B/`
 
 This directory contains:
@@ -125,6 +167,8 @@ This directory contains:
 - `Finetune/`, `Adapter/`, `Merge/`: Child model embeddings
 - `B-A/`: Parameter difference embeddings
 - `Qwen_random/`: Negative sample embeddings
+
+The bundled data cover `arc_challenge`. The matching `B-A` embeddings currently support the Adapter and Merge examples; the Finetune examples do not include a corresponding `B-A/Finetune` bundle. This is a subset of the paper's LLM evaluation. The reviewer directory `Qwen-1.5B` is separate from the `Qwen2.5-1.5B` directory used by the full-workflow YAML configuration.
 
 #### Train and Test Lineage Detector
 
@@ -134,114 +178,44 @@ Train the lineage detector on Qwen-1.5B embeddings:
 python scripts/llm/qwen_knowledge_relation_training.py
 ```
 
+This entry point trains a detector rather than loading a pretrained one. Its settings are defined in the script (100 epochs, batch size 16, learning rate `1e-4`); outputs are saved under `data/intermediate/llm/Qwen-1.5B/results/`.
+
 ### Diffusion Models
 
 **Note:** Due to the large size of diffusion model embeddings (derived from a probe set of 1,000 images), we do not provide a Quick Start mode (which relies on pre-generated embeddings) for diffusion experiments. Please follow the [Full Reproduction Pipeline](#3-diffusion-models) for detailed instructions.
 
 ---
 
-## 🔬 Full Reproduction Pipeline
+## Full Reproduction Pipeline
 
-This section details how to reproduce the experiments from scratch for all model types.
+This section lists the data preparation, embedding generation, training, and evaluation entry points. These workflows require the corresponding raw datasets and source models in addition to the bundled reviewer artifacts. Check dataset paths, model access, and the script-specific settings described in [Configuration](#configuration) before running them.
 
-<!-- ### 📂 Project Structure
+### Project Structure
 
+```text
+Model_lineage/
+├── README.md               # Paper information and experiment entry points
+├── CITATION.cff            # Machine-readable paper citation
+├── LICENSE                 # CC BY 4.0 license text
+├── THIRD_PARTY_NOTICES.md   # Attribution and scope for external materials
+├── requirements.txt        # Python dependencies
+├── configs/                # Small-model, LLM, and diffusion settings
+├── scripts/                # Data preparation, training, and evaluation
+├── src/                    # Model and utility implementations
+├── adaptive_attacks/       # Adaptive attack experiments
+├── Baselines/              # Baseline implementations and source archives
+├── data/                   # Released artifacts and local experiment data
+├── Method.png              # Method overview
+├── intro.png               # Introduction figure
+└── llmlist2.pdf             # Bundled manuscript
 ```
-.
-├── adaptive_attacks/              # 🛡️ Adaptive attack implementations
-│   ├── README.md                  # Attack overview and documentation
-│   ├── llm/                       # LLM adaptive attacks
-│   │   ├── knowledge_overwriting/ # Knowledge overwriting attack
-│   │   ├── knowledge_infusion/    # Knowledge infusion attack
-│   │   ├── weight_perturbation/   # Weight noise perturbation (deprecated)
-│   │   └── weight_prune/          # Weight pruning attack
-│   └── classification_model/      # Vision model adaptive attacks
-│       ├── dataset_utils.py       # Shared data loading utilities
-│       ├── knowledge_overwriting/ # Label shuffling attack
-│       ├── weight_prune/          # Weight prune attack
-│       ├── paramerpertur/         # Parameter perturbation
-│       └── Structure_Evasion/     # Structure evasion attack
-├── configs/                       # Configuration files for all experiments
-│   ├── llm/                       # LLM configs (Qwen, Llama, Mistral, Gemma, Phi)
-│   │   ├── qwen2_5.yaml           # Qwen 2.5 family configuration
-│   │   ├── llama3.yaml            # Llama 3 family configuration
-│   │   ├── mistral.yaml           # Mistral family configuration
-│   │   ├── gemma.yaml             # Gemma family configuration
-│   │   ├── phi4.yaml              # Phi-4 family configuration
-│   │   └── qwen3.yaml             # Qwen 3 family configuration
-│   ├── small_model/               # Vision model configs
-│   │   └── mobilenet_caltech.yaml # MobileNet/ResNet config
-│   └── diffusion_config.yaml      # Diffusion model config
-├── data/                          # Data root directory
-│   ├── datasets/                  # Raw datasets
-│   │   ├── coco/                  # COCO dataset for diffusion experiments
-│   │   ├── caltech101/            # Caltech-101 dataset
-│   │   ├── mmlu/                  # MMLU benchmark
-│   │   ├── gsm8k/                 # GSM8K math reasoning
-│   │   ├── hellaswag/             # HellaSwag commonsense reasoning
-│   │   ├── humaneval/             # HumanEval code generation
-│   │   ├── arc_challenge/         # ARC challenge
-│   │   └── mgsm/                  # Multilingual GSM
-│   ├── models/                    # Model weights and checkpoints
-│   │   ├── llm/                   # LLM model checkpoints
-│   │   ├── small_model/           # Vision model checkpoints
-│   │   └── diffusion/             # Diffusion model checkpoints
-│   ├── embeddings/                # Extracted knowledge vectors
-│   │   ├── llm/                   # LLM embeddings
-│   │   ├── small_model/           # Vision model embeddings
-│   │   └── diffusion/             # Diffusion model U-Net features
-│   └── intermediate/              # Intermediate processing data
-│       └── llm/                   # LLM intermediate outputs
-├── scripts/                       # Execution scripts for experiments
-│   ├── llm/                       # LLM experiment scripts
-│   │   ├── download_datasets.py   # Download LLM evaluation datasets
-│   │   ├── download_models.py     # Download LLM models from HuggingFace
-│   │   ├── generate_answers.py    # Generate model outputs
-│   │   ├── generate_embeddings.py # Extract knowledge embeddings
-│   │   └── train_lineage.py       # Train lineage detector
-│   ├── small_model/               # Vision model experiment scripts
-│   │   ├── train_models.py        # Train parent/child models
-│   │   ├── generate_embeddings.py # Extract feature embeddings
-│   │   ├── train_lineage.py       # Train lineage detector
-│   │   ├── train_lineage_5samples.py  # Train with 5-sample support
-│   │   ├── eval_demo.py           # Evaluation demo
-│   │   ├── run_demo.py            # Quick demo script
-│   │   └── prune_model.py         # Model pruning utility
-│   └── diffusion/                 # Diffusion model experiment scripts
-│       ├── download_datasets.py   # Download COCO dataset
-│       ├── generate_embeddings.py # Extract U-Net features
-│       ├── train_lineage.py       # Train lineage detector
-│       ├── test_lineage.py        # Test lineage detection
-│       ├── test_adaptive_attack.py    # Test adaptive attacks
-│       ├── test_unrelated_dataset.py  # Test on CIFAR-10
-│       └── README.md              # Diffusion experiments guide
-├── src/                           # Source code for models and utilities
-│   ├── llm/                       # LLM-specific modules
-│   │   ├── lineage_model.py       # LLM lineage detector
-│   │   ├── networks.py            # Transformer encoder & relation networks
-│   │   ├── dataset.py             # LLM embedding dataset
-│   │   └── loss.py                # Loss functions
-│   ├── small_model/               # Vision model modules
-│   │   ├── lineage_model.py       # Vision lineage detector
-│   │   ├── networks.py            # MLP/Transformer networks
-│   │   ├── dataset.py             # Vision embedding dataset
-│   │   └── loss.py                # Triplet & contrastive losses
-│   └── diffusion/                 # Diffusion model modules
-│       ├── lineage_model.py       # Diffusion lineage detector
-│       ├── networks.py            # Encoder & relation networks
-│       ├── loss.py                # Cosine embedding & triplet losses
-│       ├── task_vectors.py        # Task vector computation
-│       ├── diffusion_dataset.py   # COCO feature dataset
-│       └── dataset_with_attacks.py    # Dataset with attack augmentations
-└── Baselines/                     # Baseline comparison methods
-    └── KRMandIPGUAR/              # KRM and IPGuard implementations
-        ├── Dataset_inference/      # Dataset inference attack
-        └── IPGuard/                # IPGuard watermarking
-``` -->
+
 
 ### 1. Small Models (MobileNet / ResNet)
 
 Experiments on Caltech-101, Tiny-ImageNet, etc.
+
+Before running the Caltech-101 example, set `dataset.root` in `configs/small_model/mobilenet_caltech.yaml` to your local dataset directory; its current value is a path from the original development machine.
 
 **Step 1: Train Parent and Child Models**
 Trains the base models and fine-tuned variants to establish the lineage ground truth.
@@ -259,18 +233,15 @@ python scripts/small_model/generate_embeddings.py --config configs/small_model/m
 ```
 
 **Step 3: Train Lineage Detector**
-Trains the Transformer/MLP-based detector to distinguish lineage relationships.
+Trains the standalone MLP detector on the generated features.
 
 ```bash
 python scripts/small_model/train_lineage.py --config configs/small_model/mobilenet_caltech.yaml
 ```
 
 **Step 4: Evaluation**
-Evaluate the trained detector on test sets with different category relationships (parent-child, grandparent-child, non-related).
 
-```bash
-python scripts/small_model/eval_demo.py
-```
+Use the commands in [Small Models Quick Start](#small-models-mobilenet--resnet) to evaluate the released detectors on parent-child, grandparent-child, and non-related embedding bundles. The standalone training entry point above saves `lineage_detector.pth`; its architecture and checkpoint format differ from the released encoder/relation-network checkpoints, so they are not interchangeable.
 
 ### 2. Large Language Models (LLM)
 
@@ -306,6 +277,17 @@ python scripts/llm/generate_embeddings.py --config configs/llm/qwen2_5.yaml --ty
 ```
 
 **Step 4: Train Lineage Detector**
+
+Training also needs negative (`Qwen_random`) embeddings and matching `B-A/Finetune` embeddings for the same tasks and child-model filenames. For the fine-tuned model example above, generate them with:
+
+```bash
+python scripts/llm/generate_answers.py --config configs/llm/qwen2_5.yaml --type random
+python scripts/llm/generate_answers.py --config configs/llm/qwen2_5.yaml --type ba
+python scripts/llm/generate_embeddings.py --config configs/llm/qwen2_5.yaml --type random
+python scripts/llm/generate_embeddings.py --config configs/llm/qwen2_5.yaml --type ba
+```
+
+For adapter-derived `B-A` data, add `--is_adapter_source` to both `--type ba` commands. Check that the corresponding child and difference files are present before training.
 
 ```bash
 python scripts/llm/train_lineage.py --config configs/llm/qwen2_5.yaml
@@ -369,6 +351,8 @@ The detector learns to:
 **Step 3: Test Lineage Detection**
 Tests the trained detector on different model pairs.
 
+Set the checkpoint path in the evaluation script to the desired training output. Training saves `data/models/diffusion/checkpoint-<time>/epoch_<n>.pth`, whereas the test script defaults to `data/models/diffusion/checkpoint.pth`.
+
 ```bash
 python scripts/diffusion/test_lineage.py
 ```
@@ -379,7 +363,7 @@ Test robustness against parameter perturbation and model pruning attacks:
 
 ```bash
 # Test against poisoned images (adaptive attack)
-python scripts/diffusion/test_adaptive_attack.py
+python adaptive_attacks/diffusion/test_adaptive_attack.py
 
 # Test against unrelated dataset (CIFAR-10)
 python scripts/diffusion/test_unrelated_dataset.py
@@ -397,9 +381,9 @@ The diffusion experiments demonstrate that our method is robust to:
 - Model pruning (up to 60% sparsity)
 - Different probe datasets (COCO vs CIFAR-10)
 
-## 📊 Configuration
+## Configuration
 
-All experiments are driven by YAML configuration files in the `configs/` directory.
+The standard small-model and LLM workflows accept YAML files from `configs/`. The Qwen reviewer script and the diffusion scripts define settings in Python; review their data, checkpoint, and output paths directly.
 
 ### Small Model Configurations
 
@@ -426,6 +410,8 @@ Settings for various LLM families with model paths, evaluation tasks, and adapte
 
 **`configs/diffusion_config.yaml`**: Settings for Stable Diffusion lineage detection
 
+This file is a reference configuration; the diffusion commands above do not currently load it automatically.
+
   - Parent/child model pairs
   - U-Net feature extraction layers
   - Training hyperparameters
@@ -434,28 +420,21 @@ Settings for various LLM families with model paths, evaluation tasks, and adapte
 
 ```yaml
 # Example: configs/llm/qwen2_5.yaml
-model:
-  base_model: "Qwen/Qwen2.5-1.5B"
-  instruct_model: "Qwen/Qwen2.5-1.5B-Instruct"
-  adapters:
-    - "Qwen/Qwen2.5-Math-1.5B-Instruct"
-    - "Qwen/Qwen2.5-Coder-1.5B-Instruct"
-
-tasks:
-  - name: "gsm8k"
-    eval_split: "test"
-  - name: "mmlu"
-    eval_split: "validation"
+data:
+  root_dir: "./data"
+  base_model_path: "models/llm/Qwen2.5-1.5B/base_models/Qwen--Qwen2.5-1.5B"
+  instruct_model_path: "models/llm/Qwen2.5-1.5B/base_models/Qwen--Qwen2.5-1.5B-Instruct"
+  tasks: ["gsm8k", "mmlu", "arc_challenge", "hellaswag", "humaneval", "mgsm"]
 
 training:
   batch_size: 32
   learning_rate: 1e-4
-  epochs: 50
+  num_epochs: 100
 ```
 
 ---
 
-## 🛡️ Adaptive Attacks Evaluation
+## Adaptive Attacks Evaluation
 
 We provide comprehensive adaptive attack implementations to test the robustness of our lineage attestation framework. These attacks simulate adversarial scenarios where attackers attempt to hide or obfuscate model lineage.
 
@@ -511,3 +490,59 @@ cd adaptive_attacks/classification_model/knowledge_overwriting
 
 - **Scenario**: Architectural modifications to evade lineage detection
 - **Location**: [`adaptive_attacks/classification_model/Structure_Evasion/`](adaptive_attacks/classification_model/Structure_Evasion/)
+
+## Baseline Comparisons
+
+Baseline materials are collected in `Baselines/` and use their own environments and data preparation steps:
+
+| Baseline | Code or instructions |
+| --- | --- |
+| KRM / dataset inference | [Dataset inference README](Baselines/KRMandIPGUAR/Dataset_inference/README.md) |
+| IPGuard | [IPGuard README](Baselines/KRMandIPGUAR/IPGuard/README.md) |
+| Neural Lineage | [Source archive](Baselines/NeuralLineage-main.zip); consult its bundled README |
+| Neural Phylogeny | [Source archive](Baselines/Neural_Phylogeny.zip); consult its bundled README |
+
+Use the baseline authors' experiment settings and retain their attribution. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the scope of the repository license.
+
+## Results and Reproducibility
+
+The [published paper](https://www.usenix.org/system/files/usenixsecurity26-shang.pdf) is the reference for the reported experimental results. The reviewer commands above evaluate or train on the released example artifacts; their coverage is described in each section.
+
+When reporting a new run, record the Git commit, Python/PyTorch/CUDA versions, hardware, dataset and model versions, random seed, effective configuration, and evaluation output. Keep logs and generated results under this project's `data/intermediate/` or a local `results/` directory. Label newly measured results separately from the paper's reported values.
+
+The dependency file specifies version ranges. Preserve the resolved environment for a run, for example:
+
+```bash
+mkdir -p results
+git rev-parse HEAD > results/commit.txt
+python -m pip freeze > results/environment.txt
+```
+
+## Citation
+
+If you use this code or build on the method, please cite the published paper:
+
+```bibtex
+@inproceedings{shang2026attesting,
+  author    = {Zhuoyi Shang and Jiasen Li and Pengzhen Chen and Yanwei Liu and Xiaoyan Gu and Weiping Wang},
+  title     = {Attesting Model Lineage by Consisted Knowledge Evolution with {Fine-Tuning} Trajectory},
+  booktitle = {35th USENIX Security Symposium (USENIX Security 26)},
+  year      = {2026},
+  isbn      = {978-1-939133-58-8},
+  address   = {Baltimore, MD},
+  pages     = {4483--4502},
+  url       = {https://www.usenix.org/conference/usenixsecurity26/presentation/shang},
+  publisher = {USENIX Association},
+  month     = aug
+}
+```
+
+[CITATION.cff](CITATION.cff) provides the corresponding machine-readable citation. If you use the archived artifact, also identify [Zenodo DOI: 10.5281/zenodo.17958570](https://doi.org/10.5281/zenodo.17958570); for a GitHub checkout, record the commit hash.
+
+## License
+
+The project's original code and documentation are distributed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**, consistent with the license already recorded for the authors' [Zenodo software artifact](https://zenodo.org/records/17958570). See [LICENSE](LICENSE) for the full text and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for external materials and attribution.
+
+## Contact
+
+For code questions or reproducibility issues, please [open a GitHub issue](https://github.com/Tthvic/Model_lineage/issues) with the relevant command, commit hash, environment, and error message.

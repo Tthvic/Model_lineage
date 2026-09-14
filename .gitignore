@@ -1,0 +1,45 @@
+# Python environments, build products, and caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# Local editor settings, secrets, and operating-system files
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local experiment products. Already tracked release artifacts remain versioned.
+/data/datasets/
+/data/models/
+/data/embeddings/
+/data/intermediate/
+/outputs/
+/results/
+/checkpoints/
+/runs/
+/wandb/
+*.log
+nohup.out
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
