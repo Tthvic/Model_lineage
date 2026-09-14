@@ -30,7 +30,7 @@ import datetime
 from src.diffusion.dataset_with_attacks import DiffusionDatasetWithAttacks
 from src.diffusion.lineage_model import LineageDetectorModel
 from scripts.diffusion.train_lineage import test
-from scripts.diffusion.test_adaptive_attack import getvec, load_vec, extract_unet_features, load_checkpoint
+from adaptive_attacks.diffusion.test_adaptive_attack import getvec, load_vec, extract_unet_features, load_checkpoint
 from PIL import Image
 from diffusers import StableDiffusionPipeline
 import torch.nn.functional as F

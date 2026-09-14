@@ -7,7 +7,7 @@ images (e.g., bird-related prompts) to test the detector's ability to identify l
 even when the model has been attacked.
 
 Usage:
-    python scripts/diffusion/test_adaptive_attack.py
+    python adaptive_attacks/diffusion/test_adaptive_attack.py
 """
 import os
 import sys

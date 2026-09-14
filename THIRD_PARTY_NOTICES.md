@@ -2,7 +2,7 @@
 
 The project's original code and documentation use **CC BY 4.0**, following the license recorded for the authors' [Zenodo software artifact](https://zenodo.org/records/17958570), which links to this repository. The full text is in [LICENSE](LICENSE).
 
-This license statement applies only to material the project authors are entitled to license. Third-party code, archives, datasets, pretrained models, and their derivatives remain subject to their respective upstream terms. Including or downloading them through this repository does not relicense them.
+Third-party code, datasets, and models retain their original licenses. The root license applies to the project's original contributions.
 
 ## Baseline implementations
 
@@ -13,12 +13,12 @@ This license statement applies only to material the project authors are entitled
 | `Baselines/NeuralLineage-main.zip` | Baseline source archive; preserve and consult the README and any attribution inside the archive |
 | `Baselines/Neural_Phylogeny.zip` | Baseline source archive; preserve and consult the README and any attribution inside the archive |
 
-The bundled baseline directories and archives do not provide a standalone license file. Their presence here should not be interpreted as an additional grant of rights from their authors. Consult the original authors' terms before redistributing or modifying those materials.
+These baseline copies do not include standalone license files. Refer to the original releases for their licensing terms.
 
 ## Datasets and models
 
-Datasets and model checkpoints referenced by `configs/`, `scripts/`, and `adaptive_attacks/` are distributed by their original providers. Follow each dataset's terms and each model's license and access requirements, including those on its Hugging Face model card where applicable. The root license does not override those terms.
+Datasets and checkpoints referenced in the experiment scripts follow their providers' terms and model cards.
 
 ## Dependencies
 
-Python packages listed in `requirements.txt` retain their own licenses and attribution notices. Refer to the respective upstream distributions for their license texts.
+Packages in `requirements.txt` retain their upstream licenses and notices.
