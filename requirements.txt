@@ -3,10 +3,10 @@ torch>=2.0.0
 torchvision>=0.15.0
 
 # LLM & Transformers
-transformers>=4.30.0
+transformers>=4.51.0
 accelerate>=0.20.0
 peft>=0.4.0
-datasets>=2.14.0
+datasets>=2.14.0,<4.0.0
 huggingface_hub>=0.16.0
 sentencepiece
 

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite the paper below."
 type: software
-title: Model_lineage
+title: Model Lineage
 authors:
   - family-names: Shang
     given-names: Zhuoyi

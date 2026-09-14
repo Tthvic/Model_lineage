@@ -4,6 +4,12 @@
 
 Run commands from the repository root after [installation](../README.md#installation). Keep datasets and model weights under `data/`, and update paths in the relevant configuration or script before running an experiment.
 
+## Released artifacts
+
+The clone command skips automatic Git LFS downloads. Use the selective download commands in the [Quick Start](../README.md#quick-start), or run `git lfs pull` to fetch all released `.pth` files.
+
+If a `.pth` file contains text beginning with `version https://git-lfs.github.com/spec/v1`, it is an LFS pointer. Run the corresponding `git lfs pull --include=...` command before loading it. Dataset downloads and newly generated outputs stay under `data/` and are ignored by Git.
+
 ## Small models
 
 Set `dataset.root` in [mobilenet_caltech.yaml](../configs/small_model/mobilenet_caltech.yaml) to your Caltech-101 directory. The file also specifies the parent/child class subsets, training settings, and output paths.
@@ -40,6 +46,12 @@ Available configurations:
 The commands below use Qwen 2.5. The configuration defines local paths under `data`, tasks under `data.tasks`, and training settings such as `training.num_epochs`. Source models may require access from their providers.
 
 ### Download models and datasets
+
+The dataset downloader uses Hugging Face authentication. Log in once, or supply an `HF_TOKEN` environment variable for your session. For gated source models, first obtain access on the model provider's page.
+
+```bash
+python -c "from huggingface_hub import login; login()"
+```
 
 ```bash
 python scripts/llm/download_models.py --config configs/llm/qwen2_5.yaml

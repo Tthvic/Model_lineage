@@ -1,20 +1,24 @@
 # Model Lineage
 
-Official implementation of **[Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory](https://www.usenix.org/conference/usenixsecurity26/presentation/shang)** (USENIX Security 2026).
+Code for **[Attesting Model Lineage by Consisted Knowledge Evolution with Fine-Tuning Trajectory](https://www.usenix.org/conference/usenixsecurity26/presentation/shang)** (USENIX Security 2026).
 
-Zhuoyi Shang, Jiasen Li, Pengzhen Chen, Yanwei Liu, Xiaoyan Gu, Weiping Wang
+Zhuoyi Shang<sup>*</sup>, Jiasen Li<sup>*</sup>, Pengzhen Chen<sup>*</sup>, Yanwei Liu<sup>†</sup>, Xiaoyan Gu<sup>†</sup>, Weiping Wang
+
+<sup>*</sup> Equal contribution. <sup>†</sup> Corresponding authors.
 
 [Paper](https://www.usenix.org/conference/usenixsecurity26/presentation/shang) | [PDF](https://www.usenix.org/system/files/usenixsecurity26-shang.pdf) | [arXiv](https://arxiv.org/abs/2601.11683) | [Artifact](https://zenodo.org/records/17958570) | [BibTeX](#citation)
 
 We verify model lineage by checking the consistency between knowledge evolution and parameter changes along fine-tuning trajectories. The code covers image classifiers, large language models, and diffusion models.
 
 <p align="center">
-  <img src="Method.png" alt="Model lineage attestation framework" width="90%" />
+  <img src="Method.png" alt="Model lineage attestation: evolution model, knowledge vectorization, and lineage attestation for classifiers, diffusion models, and LLMs" width="100%" />
 </p>
+
+*Overview of the model lineage attestation framework (Figure 3 in the paper).*
 
 ## Installation
 
-Use Python 3.10+ and install [Git LFS](https://git-lfs.com/) for the released embeddings and checkpoints. The commands below create a Python 3.12 environment.
+Use Python 3.12 with a compatible [PyTorch build](https://pytorch.org/get-started/previous-versions/). [Git LFS](https://git-lfs.com/) is required to download the released embeddings and checkpoints.
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Tthvic/Model_lineage.git
@@ -23,10 +27,11 @@ git lfs install --local
 
 conda create -n lineage python=3.12 -y
 conda activate lineage
-pip install -r requirements.txt
+python -m pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cu130
+python -m pip install -r requirements.txt
 ```
 
-Run the following commands from the repository root. Fetch the artifacts for each example as shown below, or run `git lfs pull` to download all released `.pth` files. Full LLM and diffusion experiments require a CUDA GPU; an A100 80GB is recommended.
+Run all commands from the repository root. Fetch only the artifacts needed for each example using the commands below.
 
 ## Quick Start
 
@@ -58,8 +63,6 @@ python scripts/small_model/train_lineage.py \
     --data_dir data/embeddings/small_model/test_R_data.pth
 ```
 
-If a `.pth` file contains text starting with `version https://git-lfs.github.com/spec/v1`, it is still an LFS pointer. Run the download command above to fetch the actual file.
-
 ### Qwen
 
 Train and evaluate a lineage detector on the bundled ARC-Challenge embeddings for Adapter and Merge models:
@@ -71,10 +74,11 @@ python scripts/llm/qwen_knowledge_relation_training.py
 
 This example trains for 100 epochs using settings in the script. Results are saved to `data/intermediate/llm/Qwen-1.5B/results/`. See the [LLM guide](docs/experiments.md#large-language-models) for the full workflow and data layout.
 
-## Experiments
+## Documentation
 
-| Experiments | Instructions |
+| Topic | Guide |
 | --- | --- |
+| Released embeddings and checkpoints | [Artifact downloads](docs/experiments.md#released-artifacts) |
 | MobileNet / ResNet | [Data preparation and training](docs/experiments.md#small-models) |
 | Large language models | [Model downloads, embeddings, and training](docs/experiments.md#large-language-models) |
 | Diffusion models | [Embedding generation and evaluation](docs/experiments.md#diffusion-models) |
@@ -101,7 +105,5 @@ If you find this work useful, please cite our paper:
   month     = aug
 }
 ```
-
-## License
 
 Original code and documentation are licensed under [CC BY 4.0](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for external code, datasets, and models.
